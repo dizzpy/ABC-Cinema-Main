@@ -1,29 +1,37 @@
-<nav class="bg-gray-800 text-white">
+<nav class="bg-custom-black text-white mt-3">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <!-- Logo -->
         <a href="index.jsp" class="text-white text-xl font-bold">
-            MovieBooking
+            <img src="<%= request.getContextPath() %>static/assets/images/logo.svg" alt="Logo">
         </a>
 
         <!-- Center Links -->
         <div class="hidden md:flex space-x-8">
-            <a href="" class="text-gray-300 hover:text-white text-sm font-medium">
-                Movies
+            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+                Home
             </a>
-            <a href="" class="text-gray-300 hover:text-white text-sm font-medium">
-                Book Now
+            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+                Moview
             </a>
-            <a href="" class="text-gray-300 hover:text-white text-sm font-medium">
-                My Bookings
+            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+                Locations
             </a>
-            <a href="" class="text-gray-300 hover:text-white text-sm font-medium">
-                Profile
+            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+                About Us
             </a>
         </div>
 
         <!-- Button -->
-        <a href="" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md text-sm font-medium">
-            Logout
-        </a>
+        <div class="flex space-x-4">
+            <!-- Search Button -->
+            <button class="custom-secondary-button !py-2 !px-2">
+                <img src="<%= request.getContextPath() %>static/assets/icons/search-icon.svg" alt="search" class="text-custom-black">
+            </button>
+
+            <!-- Login Button -->
+            <a href="#" class="custom-primary-button">
+                Login to Account
+            </a>
+        </div>
     </div>
 </nav>
