@@ -25,12 +25,13 @@
         <div class="flex space-x-4">
             <!-- Search Button -->
             <button class="custom-secondary-button !py-2 !px-2">
-                <img src="<%= request.getContextPath() %>static/assets/icons/search-icon.svg" alt="search" class="text-custom-black">
+                <img src="<%= request.getContextPath() %>static/assets/icons/search-icon.svg" alt="search"
+                     class="text-custom-black">
             </button>
 
             <!-- Login Button -->
             <a href="#" class="custom-primary-button">
-                Login to Account
+                Login
             </a>
         </div>
     </div>
