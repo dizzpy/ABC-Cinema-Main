@@ -7,7 +7,8 @@
     <!-- Add Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <title>MyWebApp</title>
 
@@ -47,10 +48,12 @@
                 font-family: Inter, system-ui, sans-serif;
             }
         }
+
         @layer components {
             .custom-primary-button {
                 @apply px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200;
             }
+
             .custom-secondary-button {
                 @apply px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200;
             }
@@ -81,7 +84,8 @@
                 rgba(0, 0, 0, 1) 100%);">
                     <div class="absolute bottom-0 left-0 p-6 md:bottom-20 md:left-20 md:pl-[70px] md:pb-[70px] text-white w-full md:w-auto">
                         <p class="text-base md:text-lg mb-2">In Cinemas 8th November</p>
-                        <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">Inception</h1>
+                        <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">
+                            Inception</h1>
                         <div class="flex items-center space-x-3 md:space-x-4 mb-4 text-custom-textgray">
                             <p class="text-sm md:text-base">Action, Comedy</p>
                             <div class="w-1 h-1 bg-custom-textgray rounded-full"></div>
@@ -107,7 +111,8 @@
                 rgba(0, 0, 0, 1) 100%);">
                     <div class="absolute bottom-0 left-0 p-6 md:bottom-20 md:left-20 md:pl-[70px] md:pb-[70px] text-white w-full md:w-auto">
                         <p class="text-base md:text-lg mb-2">In Cinemas 15th December</p>
-                        <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">The Matrix</h1>
+                        <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">The
+                            Matrix</h1>
                         <div class="flex items-center space-x-3 md:space-x-4 mb-4 text-custom-textgray">
                             <p class="text-sm md:text-base">Sci-Fi, Action</p>
                             <div class="w-1 h-1 bg-custom-textgray rounded-full"></div>
@@ -159,7 +164,8 @@
                 rgba(0, 0, 0, 1) 100%);">
                     <div class="absolute bottom-0 left-0 p-6 md:bottom-20 md:left-20 md:pl-[70px] md:pb-[70px] text-white w-full md:w-auto">
                         <p class="text-base md:text-lg mb-2">In Cinemas 29th December</p>
-                        <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">Blade Runner</h1>
+                        <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">Blade
+                            Runner</h1>
                         <div class="flex items-center space-x-3 md:space-x-4 mb-4 text-custom-textgray">
                             <p class="text-sm md:text-base">Sci-Fi, Thriller</p>
                             <div class="w-1 h-1 bg-custom-textgray rounded-full"></div>
@@ -176,19 +182,23 @@
             <!-- Dots Navigation -->
             <div class="absolute bottom-5 left-0 right-0">
                 <div class="flex items-center justify-center gap-2">
-                    <button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
-                    <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
-                    <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
-                    <button onclick="goToSlide(3)" class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
+                    <button onclick="goToSlide(0)"
+                            class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
+                    <button onclick="goToSlide(1)"
+                            class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
+                    <button onclick="goToSlide(2)"
+                            class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
+                    <button onclick="goToSlide(3)"
+                            class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 transition duration-300 ease-in-out"></button>
                 </div>
             </div>
         </div>
     </div>
 
-<!-- Footer -->
-<%@ include file="views/components/shared/footer.jsp" %>
+    <!-- Footer -->
+    <%@ include file="views/components/shared/footer.jsp" %>
 
-<!-- Carousel JavaScript -->
+    <!-- Carousel JavaScript -->
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('[data-slide]');
