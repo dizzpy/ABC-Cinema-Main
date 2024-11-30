@@ -30,7 +30,7 @@
 
             <!-- Login Button -->
             <a href="#" class="custom-primary-button">
-                Login to Account
+                Login
             </a>
         </div>
     </div>
