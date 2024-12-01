@@ -1,7 +1,7 @@
 <!-- carousel.jsp -->
 <div class="relative w-full overflow-hidden" id="carousel">
     <!-- Carousel container -->
-    <div class="relative w-full h-[500px] md:h-[700px]" id="slider">
+    <div class="relative w-full" id="slider" style="height: calc(100vh - 60px);">
         <!-- Slide 1 -->
         <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out opacity-0"
              style="background-image: url('${pageContext.request.contextPath}/static/assets/images/caro1.jpg');"

@@ -70,6 +70,64 @@
     <!-- Include the carousel -->
     <%@ include file="views/components/home/carousel.jsp" %>
 
+    <!-- Now Showing Movies Section -->
+    <section class="container mx-auto py-12 px-4 md:px-8">
+        <h2 class="text-3xl text-custom-white text-center mb-8">Now Showing Movies</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Movie Card 1 -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <img src="path-to-your-movie-image-1.jpg" alt="Movie 1" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl text-white font-semibold">Movie Title 1</h3>
+                    <p class="text-sm text-gray-400 mt-2">Released: 2024</p>
+                    <div class="mt-4 flex gap-2">
+                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
+                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie Card 2 -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <img src="path-to-your-movie-image-2.jpg" alt="Movie 2" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl text-white font-semibold">Movie Title 2</h3>
+                    <p class="text-sm text-gray-400 mt-2">Coming Soon</p>
+                    <div class="mt-4 flex gap-2">
+                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
+                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie Card 3 -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <img src="path-to-your-movie-image-3.jpg" alt="Movie 3" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl text-white font-semibold">Movie Title 3</h3>
+                    <p class="text-sm text-gray-400 mt-2">Released: 2024</p>
+                    <div class="mt-4 flex gap-2">
+                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
+                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie Card 4 -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <img src="path-to-your-movie-image-4.jpg" alt="Movie 4" class="w-full h-64 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl text-white font-semibold">Movie Title 4</h3>
+                    <p class="text-sm text-gray-400 mt-2">Now Showing</p>
+                    <div class="mt-4 flex gap-2">
+                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
+                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <%@ include file="views/components/shared/footer.jsp" %>
 </div>
