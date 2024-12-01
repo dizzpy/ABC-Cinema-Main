@@ -24,13 +24,14 @@
         <!-- Button -->
         <div class="flex space-x-4">
             <!-- Search Button -->
-            <button class="custom-secondary-button !py-2 !px-2">
+            <button class="px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200 !py-2 !px-2">
                 <img src="<%= request.getContextPath() %>static/assets/icons/search-icon.svg" alt="search"
                      class="text-custom-black">
             </button>
 
             <!-- Login Button -->
-            <a href="#" class="custom-primary-button">
+            <a href="#"
+               class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200">
                 Login
             </a>
         </div>
