@@ -1,4 +1,4 @@
-<nav class="bg-custom-black text-white mt-3">
+<nav class="bg-custom-black text-white mt-3 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <!-- Logo -->
         <a href="index.jsp" class="text-white text-xl font-bold">
@@ -11,7 +11,7 @@
                 Home
             </a>
             <a href="" class="text-custom-white hover:text-white text-sm font-normal">
-                Moview
+                Movies
             </a>
             <a href="" class="text-custom-white hover:text-white text-sm font-normal">
                 Locations
