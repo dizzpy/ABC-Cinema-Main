@@ -71,62 +71,117 @@
     <%@ include file="views/components/home/carousel.jsp" %>
 
     <!-- Now Showing Movies Section -->
-    <section class="container mx-auto py-12 px-4 md:px-8">
-        <h2 class="text-3xl text-custom-white text-center mb-8">Now Showing Movies</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
+        <!-- Title Section -->
+        <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
+            <!-- Title Section -->
+            <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Movies in Theaters</h2>
+            <!-- View All Section -->
+            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View All</p>
+        </div>
+
+
+
+
+
+
+        <!-- Card Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+
             <!-- Movie Card 1 -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                <img src="path-to-your-movie-image-1.jpg" alt="Movie 1" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl text-white font-semibold">Movie Title 1</h3>
-                    <p class="text-sm text-gray-400 mt-2">Released: 2024</p>
-                    <div class="mt-4 flex gap-2">
-                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
-                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+            <a href="movie-details.jsp?id=1" class="flex justify-center">
+                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
+                    <!-- Movie Image -->
+                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
+                         class="w-full h-[370px] object-cover">
+                    <!-- Movie Info -->
+                    <div class="pt-3">
+                        <!-- Movie Name & Rating -->
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-normal text-white">Elevation</h3>
+                            <div class="flex items-center justify-center">
+                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
+                                     class="w-4 h-4 text-yellow-300 mr-2">
+                                <p class="text-sm text-yellow-300">5.6/10</p>
+                            </div>
+                        </div>
+                        <!-- Movie Genres -->
+                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Movie Card 2 -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                <img src="path-to-your-movie-image-2.jpg" alt="Movie 2" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl text-white font-semibold">Movie Title 2</h3>
-                    <p class="text-sm text-gray-400 mt-2">Coming Soon</p>
-                    <div class="mt-4 flex gap-2">
-                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
-                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+            <a href="movie-details.jsp?id=2" class="flex justify-center">
+                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
+                    <!-- Movie Image -->
+                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
+                         class="w-full h-[370px] object-cover">
+                    <!-- Movie Info -->
+                    <div class="pt-3">
+                        <!-- Movie Name & Rating -->
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-normal text-white">Elevation</h3>
+                            <div class="flex items-center justify-center">
+                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
+                                     class="w-4 h-4 text-yellow-300 mr-2">
+                                <p class="text-sm text-yellow-300">5.6/10</p>
+                            </div>
+                        </div>
+                        <!-- Movie Genres -->
+                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Movie Card 3 -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                <img src="path-to-your-movie-image-3.jpg" alt="Movie 3" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl text-white font-semibold">Movie Title 3</h3>
-                    <p class="text-sm text-gray-400 mt-2">Released: 2024</p>
-                    <div class="mt-4 flex gap-2">
-                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
-                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+            <a href="movie-details.jsp?id=3" class="flex justify-center">
+                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
+                    <!-- Movie Image -->
+                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
+                         class="w-full h-[370px] object-cover">
+                    <!-- Movie Info -->
+                    <div class="pt-3">
+                        <!-- Movie Name & Rating -->
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-normal text-white">Elevation</h3>
+                            <div class="flex items-center justify-center">
+                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
+                                     class="w-4 h-4 text-yellow-300 mr-2">
+                                <p class="text-sm text-yellow-300">5.6/10</p>
+                            </div>
+                        </div>
+                        <!-- Movie Genres -->
+                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Movie Card 4 -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                <img src="path-to-your-movie-image-4.jpg" alt="Movie 4" class="w-full h-64 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl text-white font-semibold">Movie Title 4</h3>
-                    <p class="text-sm text-gray-400 mt-2">Now Showing</p>
-                    <div class="mt-4 flex gap-2">
-                        <a href="#" class="custom-primary-button w-full">Buy Ticket</a>
-                        <a href="#" class="custom-secondary-button w-full">Watch Trailer</a>
+            <a href="movie-details.jsp?id=4" class="flex justify-center">
+                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
+                    <!-- Movie Image -->
+                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
+                         class="w-full h-[370px] object-cover">
+                    <!-- Movie Info -->
+                    <div class="pt-3">
+                        <!-- Movie Name & Rating -->
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-normal text-white">Elevation</h3>
+                            <div class="flex items-center justify-center">
+                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
+                                     class="w-4 h-4 text-yellow-300 mr-2">
+                                <p class="text-sm text-yellow-300">5.6/10</p>
+                            </div>
+                        </div>
+                        <!-- Movie Genres -->
+                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
+
 
     <!-- Footer -->
     <%@ include file="views/components/shared/footer.jsp" %>
