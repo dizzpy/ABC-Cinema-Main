@@ -45,7 +45,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
 
             <!-- Movie Card 1 -->
-            <a href="movie-details.jsp?id=1" class="flex justify-center">
+            <a href="${pageContext.request.contextPath}/views/movies/movie-details.jsp" class="flex justify-center">
                 <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
                     <!-- Movie Image -->
                     <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
@@ -137,9 +137,6 @@
             </a>
         </div>
     </section>
-
-    
-
 
     <!-- Footer -->
     <%@ include file="views/components/shared/footer.jsp" %>

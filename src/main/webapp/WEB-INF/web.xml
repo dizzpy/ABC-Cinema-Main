@@ -40,14 +40,14 @@
     </servlet-mapping>
 
     <!-- Dynamic Page -->
-<!--    <servlet>-->
-<!--        <servlet-name>MovieDetailsServlet</servlet-name>-->
-<!--        <servlet-class>com.example.MovieDetailsServlet</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>MovieDetailsServlet</servlet-name>-->
-<!--        <url-pattern>/movie-name</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <!--    <servlet>-->
+    <!--        <servlet-name>MovieDetailsServlet</servlet-name>-->
+    <!--        <servlet-class>com.example.MovieDetailsServlet</servlet-class>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>MovieDetailsServlet</servlet-name>-->
+    <!--        <url-pattern>/movie-name</url-pattern>-->
+    <!--    </servlet-mapping>-->
 
     <!-- Static Resource Mapping -->
     <servlet-mapping>

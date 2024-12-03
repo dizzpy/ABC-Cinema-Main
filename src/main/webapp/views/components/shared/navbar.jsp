@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <!-- Logo -->
         <a href="index.jsp" class="text-white text-xl font-bold">
-            <img src="<%= request.getContextPath() %>static/assets/images/logo.svg" alt="Logo">
+            <img src="<%= request.getContextPath() %>/static/assets/images/logo.svg" alt="Logo">
         </a>
 
         <!-- Center Links -->
@@ -29,7 +29,7 @@
         <div class="flex space-x-4">
             <!-- Search Button -->
             <button class="px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200 !py-2 !px-2">
-                <img src="<%= request.getContextPath() %>static/assets/icons/search-icon.svg" alt="search"
+                <img src="<%= request.getContextPath() %>/static/assets/icons/search-icon.svg" alt="search"
                      class="text-custom-black">
             </button>
 
