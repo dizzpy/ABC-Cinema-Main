@@ -14,7 +14,7 @@
     <!-- Static Pages -->
     <servlet>
         <servlet-name>MoviesPage</servlet-name>
-        <jsp-file>/views/components/pages/movies.jsp</jsp-file>
+        <jsp-file>/views/pages/movies.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>MoviesPage</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>LocationPage</servlet-name>
-        <jsp-file>/views/components/pages/location.jsp</jsp-file>
+        <jsp-file>/views/pages/location.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>LocationPage</servlet-name>
@@ -32,7 +32,7 @@
 
     <servlet>
         <servlet-name>AboutPage</servlet-name>
-        <jsp-file>/views/components/pages/about.jsp</jsp-file>
+        <jsp-file>/views/pages/about.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>AboutPage</servlet-name>
