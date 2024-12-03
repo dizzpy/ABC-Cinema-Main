@@ -7,16 +7,20 @@
 
         <!-- Center Links -->
         <div class="hidden md:flex space-x-8">
-            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+            <a href="${pageContext.request.contextPath}/"
+               class="text-custom-white hover:text-white text-sm font-normal">
                 Home
             </a>
-            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+            <a href="${pageContext.request.contextPath}/movies"
+               class="text-custom-white hover:text-white text-sm font-normal">
                 Movies
             </a>
-            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+            <a href="${pageContext.request.contextPath}/location"
+               class="text-custom-white hover:text-white text-sm font-normal">
                 Locations
             </a>
-            <a href="" class="text-custom-white hover:text-white text-sm font-normal">
+            <a href="${pageContext.request.contextPath}/about"
+               class="text-custom-white hover:text-white text-sm font-normal">
                 About Us
             </a>
         </div>
