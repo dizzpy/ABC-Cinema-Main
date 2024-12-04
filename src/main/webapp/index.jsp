@@ -15,53 +15,13 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Configure Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                fontFamily: {
-                    sans: ['Inter', 'system-ui', 'sans-serif'],
-                },
-                extend: {
-                    colors: {
-                        custom: {
-                            black: '#171717',
-                            red: '#E64C45',
-                            white: '#FFFFFF',
-                            gray: '#282727',
-                            textgray: '#B1B1B1'
-                        }
-                    },
-                },
-                plugins: {
-                    tailwindcss: {},
-                    autoprefixer: {},
-                },
-            }
-        }
-    </script>
-
-    <!-- Add component classes -->
-    <style type="text/tailwindcss">
-        @layer base {
-            html {
-                font-family: Inter, system-ui, sans-serif;
-            }
-        }
-
-        @layer components {
-            .custom-primary-button {
-                @apply px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200;
-            }
-
-            .custom-secondary-button {
-                @apply px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200;
-            }
-        }
-    </style>
+    <%-- Tailwind config file --%>
+    <script src="${pageContext.request.contextPath}/static/js/tailwind-config.js"></script>
+    <link href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 
 <body class="bg-custom-black min-h-screen flex flex-col">
+
 <!-- Main content wrapper -->
 <div class="flex flex-col flex-grow">
     <!-- Navbar -->
@@ -85,7 +45,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
 
             <!-- Movie Card 1 -->
-            <a href="movie-details.jsp?id=1" class="flex justify-center">
+            <a href="${pageContext.request.contextPath}/views/movies/movie-details.jsp" class="flex justify-center">
                 <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
                     <!-- Movie Image -->
                     <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
@@ -177,7 +137,6 @@
             </a>
         </div>
     </section>
-
 
     <!-- Footer -->
     <%@ include file="views/components/shared/footer.jsp" %>

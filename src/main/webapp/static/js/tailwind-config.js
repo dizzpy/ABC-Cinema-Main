@@ -1,5 +1,4 @@
-// webapp/static/js/tailwind.config.js
-window.tailwind.config = {
+tailwind.config = {
     theme: {
         fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
