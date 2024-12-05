@@ -22,7 +22,7 @@
 
 <body class="bg-custom-black min-h-screen flex flex-col items-center justify-center">
 <div class="w-[350px] text-center">
-    <p class="text-[20px] text-custom-white mb-6">Log in to your Account</p>
+    <p class="text-[20px] text-custom-white mb-6">Reset Your Password</p>
 
     <%--  Email Inputbox  --%>
     <input
@@ -32,34 +32,12 @@
             placeholder="sampleemail@abc.com"
             class="w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
     />
-
-    <%--  Password Inputbox  --%>
-    <input
-            type="password"
-            id="password"
-            name="email"
-            placeholder="***********"
-            class="mt-5 w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
-    />
-
-    <%--  Navigate to Reset Password page  --%>
-    <div class="w-full">
-        <a href="/forgot-password"
-           class="text-custom-red text-[14px] my-3 block text-right">Forgot Password?</a>
-    </div>
-
-    <%--  Create Account Button  --%>
-    <button class="w-full bg-custom-red text-custom-white rounded-md px-5 py-3">
-        Login to Account
-    </button>
-
-    <%--  Naviagte to Register page  --%>
-    <div class="w-full mt-5">
-        <p class="text-custom-white text-[14px]">Don't have an account? <a
-                href="/register"
-                class="text-custom-red">Sign Up</a>
-        </p>
-    </div>
+    <%--  Send Rest Button  --%>
+    <a href="/">
+        <div class="mt-5 w-full bg-custom-red text-custom-white rounded-md px-5 py-3">
+            <p>Send Reset Link</p>
+        </div>
+    </a>
 </div>
 </body>
 </html>
