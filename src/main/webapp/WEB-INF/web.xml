@@ -61,6 +61,16 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
+    <!-- forgot password -->
+    <servlet>
+        <servlet-name>ForgotPasswordPage</servlet-name>
+        <jsp-file>/views/auth/reset-password.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordPage</servlet-name>
+        <url-pattern>/forgot-password</url-pattern>
+    </servlet-mapping>
+
 
 
 
