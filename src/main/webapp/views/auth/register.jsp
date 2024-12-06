@@ -20,12 +20,49 @@
     <link href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 
-<body class="bg-custom-black min-h-screen flex flex-col">
+<body class="bg-custom-black min-h-screen flex flex-col items-center justify-center">
+<div class="w-[350px] text-center">
+    <p class="text-[20px] text-custom-white mb-6">Create an Account</p>
 
-<!-- Main content wrapper -->
-<div class="flex flex-col flex-grow">
+    <%--  Name Inputbox  --%>
+    <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="john doe"
+            class="w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
+    />
 
-<p class="mx-auto text-custom-red text-4xl">register</p>
+    <%--  Email Inputbox  --%>
+    <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="sampleemail@abc.com"
+            class="mt-5 w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
+    />
+
+    <%--  Password Inputbox  --%>
+    <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="***********"
+            class="mt-5 w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
+    />
+
+    <%--  Create Account Button  --%>
+    <button class="w-full bg-custom-red text-custom-white rounded-md px-5 py-3 mt-5">
+        Create
+    </button>
+
+    <%--  Naviagte to Login page  --%>
+    <div class="w-full mt-5">
+        <p class="text-custom-white text-[14px]">Already have an account? <a
+                href="/login"
+                class="text-custom-red">Login</a>
+        </p>
+    </div>
 </div>
 </body>
 </html>
