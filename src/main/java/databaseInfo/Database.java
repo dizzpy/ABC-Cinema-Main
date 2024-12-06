@@ -1,3 +1,5 @@
+package databaseInfo;
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,7 +31,7 @@ public class Database {
         } catch (Exception e) {
             System.err.println("Failed to load database configuration or driver!");
             e.printStackTrace();
-            throw new RuntimeException("Failed to initialize Database class", e);
+            throw new RuntimeException("Failed to initialize databaseInfo.Database class", e);
         }
     }
 
