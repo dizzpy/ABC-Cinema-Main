@@ -28,6 +28,37 @@
     <%@ include file="/views/components/shared/navbar.jsp" %>
 
 
+    <div class="container mx-auto px-[240px] py-[100px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-[59px] gap-x-[50px]">
+
+            <div class="flex flex-col items-start">
+                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
+                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+            </div>
+
+            <div class="flex flex-col items-start">
+                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
+                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+            </div>
+
+            <div class="flex flex-col items-start">
+                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
+                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+            </div>
+
+            <div class="flex flex-col items-start">
+                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
+                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+            </div>
+
+            <div class="flex flex-col items-start">
+                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
+                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Footer -->
     <%@ include file="/views/components/shared/footer.jsp" %>
 </div>
