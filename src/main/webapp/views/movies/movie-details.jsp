@@ -102,7 +102,7 @@
                         </a>
 
                         <!-- Book Now Button -->
-                        <a href="#"
+                        <a href="#SelectSeats"
                            class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200">
                             <span class="text-base">Book Now</span>
                         </a>
@@ -169,7 +169,8 @@
     </section>
 
     <!-- SCREEN -->
-    <%--    <img src="${pageContext.request.contextPath}/static/assets/screen.png" alt="Seats" class="w-full h-[550px] mx-auto mt-10 object-cover">--%>
+    <img src="${pageContext.request.contextPath}/static/assets/screen.png" alt="Seats"
+         class="w-full h-[550px] mx-auto mt-10 object-cover">
 
     <!--
     --------------------------------------------------------------
@@ -177,7 +178,7 @@
     --------------------------------------------------------------
     -->
 
-    <div class="max-w-4xl h-[400px] mx-auto container">
+    <div id="SelectSeats" class="max-w-4xl h-[400px] mx-auto container">
         <!-- Seat Grid -->
         <div class="grid grid-cols-10 gap-1 h-full">
             <%
@@ -204,12 +205,11 @@
         </div>
 
         <!-- Selected Seats Section | @akila me tik ain krl dnn.nikn damme ubt lesi wenn. -->
-        <div class="pt-10 pb-10">
-            <h2 class="text-xl text-white">Selected Seats:</h2>
-            <div id="selectedSeats" class="text-white"></div>
-        </div>
+        <%-- <div class="my-20"> --%>
+        <%-- <h2 class="text-xl text-white">Selected Seats:</h2> --%>
+        <%-- <div id="selectedSeats" class="text-white"></div> --%>
+        <%-- </div> --%>
     </div>
-
 
     <!--
     --------------------------------------------------------------
@@ -217,10 +217,48 @@
     --------------------------------------------------------------
     -->
 
-    
+    <!-- Available | Selected | Booked -->
+    <div class="flex flex-row space-x-16 mx-auto my-12">
+        <div class="flex flex-row items-center space-x-2">
+            <div class="w-4 h-4 border border-custom-white rounded"></div>
+            <span class="text-[16px] font-normal text-custom-textgray">Available</span>
+        </div>
+
+        <div class="flex flex-row items-center space-x-2">
+            <div class="w-4 h-4 bg-custom-red rounded"></div>
+            <span class="text-[16px] font-normal text-custom-textgray">Selected</span>
+        </div>
+
+        <div class="flex flex-row items-center space-x-2">
+            <div class="w-4 h-4 bg-custom-white rounded"></div>
+            <span class="text-[16px] font-normal text-custom-textgray">Booked</span>
+        </div>
+    </div>
+
+    <!-- Total Price for selected seats -->
+    <div class="flex flex-row justify-center mt-[20px]">
+        <p class="text-xl text-custom-white">Total Price: LKR 1000</p>
+    </div>
+
+    <!-- Continue to Payment | Discard buttons -->
+    <div class="flex flex-row justify-center space-x-4 mt-10 mb-[80px]">
+
+        <!-- Discard Button -->
+        <a href="#"
+           class="px-4 py-2 bg-custom-gray text-white font-normal rounded-[8px] transition-colors duration-200">
+            <span class="text-base">Discard</span>
+        </a>
+
+        <!-- Continue to Payment Button -->
+        <a href="#"
+           class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200">
+            <span class="text-base">Continue to Payment</span>
+        </a>
+    </div>
+
 
     <!-- Footer -->
-    <%--    <%@ include file="views/components/shared/footer.jsp" %>--%>
+    <%@ include file="/views/components/shared/footer.jsp" %>
 
 
     <!-- JavaScript to Handle Seat Selection -->
