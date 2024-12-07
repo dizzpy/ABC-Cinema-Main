@@ -168,8 +168,75 @@
 
     </section>
 
+    <!-- SCREEN -->
+    <%--    <img src="${pageContext.request.contextPath}/static/assets/screen.png" alt="Seats" class="w-full h-[550px] mx-auto mt-10 object-cover">--%>
+
+    <!--
+    --------------------------------------------------------------
+    Seats Section Start
+    --------------------------------------------------------------
+    -->
+
+    <div class="max-w-4xl h-[400px] mx-auto container">
+        <!-- Seat Grid -->
+        <div class="grid grid-cols-10 gap-1 h-full">
+            <%
+                // Define rows and columns
+                String[] rows = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+                int columns = 10;
+
+                // Loop through rows and columns to create seats
+                for (String row : rows) {
+                    for (int col = 1; col <= columns; col++) {
+                        String seatId = row + col;
+            %>
+            <!-- Seat Button -->
+            <button
+                    id="<%= seatId %>"
+                    class="w-full h-full border border-custom-white rounded hover:bg-custom-red text-white transition">
+                <%= seatId %>
+            </button>
+            <%
+                    }
+                }
+            %>
+        </div>
+    </div>
+
+
+    <!--
+    --------------------------------------------------------------
+    Seats Section End
+    --------------------------------------------------------------
+    -->
+
     <!-- Footer -->
     <%--    <%@ include file="views/components/shared/footer.jsp" %>--%>
+
+
+    <!-- JavaScript to Handle Seat Selection -->
+    <script>
+        let selectedSeats = [];
+
+        function toggleSeat(seatId) {
+            const seatButton = document.getElementById(seatId);
+
+            if (selectedSeats.includes(seatId)) {
+                // Deselect seat
+                selectedSeats = selectedSeats.filter(seat => seat !== seatId);
+                seatButton.classList.remove("bg-blue-500", "text-white");
+                seatButton.classList.add("border-gray-400");
+            } else {
+                // Select seat
+                selectedSeats.push(seatId);
+                seatButton.classList.add("bg-blue-500", "text-white");
+                seatButton.classList.remove("border-gray-400");
+            }
+
+            // Update Selected Seats Display
+            document.getElementById("selectedSeats").textContent = selectedSeats.join(", ");
+        }
+    </script>
 </div>
 </body>
 </html>
