@@ -193,13 +193,20 @@
             <!-- Seat Button -->
             <button
                     id="<%= seatId %>"
-                    class="w-full h-full border border-custom-white rounded hover:bg-custom-red text-white transition">
+                    class="seat w-full h-full border border-custom-white rounded hover:text-custom-textgray text-white transition"
+                    onclick="toggleSeatSelection('<%= seatId %>')">
                 <%= seatId %>
             </button>
             <%
                     }
                 }
             %>
+        </div>
+
+        <!-- Selected Seats Section | @akila me tik ain krl dnn.nikn damme ubt lesi wenn. -->
+        <div class="pt-10 pb-10">
+            <h2 class="text-xl text-white">Selected Seats:</h2>
+            <div id="selectedSeats" class="text-white"></div>
         </div>
     </div>
 
@@ -210,31 +217,42 @@
     --------------------------------------------------------------
     -->
 
+    
+
     <!-- Footer -->
     <%--    <%@ include file="views/components/shared/footer.jsp" %>--%>
 
 
     <!-- JavaScript to Handle Seat Selection -->
     <script>
+        // Array to store selected seat IDs
         let selectedSeats = [];
 
-        function toggleSeat(seatId) {
-            const seatButton = document.getElementById(seatId);
+        // Function to toggle seat selection
+        function toggleSeatSelection(seatId) {
+            const seat = document.getElementById(seatId);
 
-            if (selectedSeats.includes(seatId)) {
-                // Deselect seat
-                selectedSeats = selectedSeats.filter(seat => seat !== seatId);
-                seatButton.classList.remove("bg-blue-500", "text-white");
-                seatButton.classList.add("border-gray-400");
+            // Toggle selected class for the seat
+            if (seat.classList.contains('bg-custom-red')) {
+                // Remove from selected seats array and update button style
+                selectedSeats = selectedSeats.filter(item => item !== seatId);
+                seat.classList.remove('bg-custom-red');
+                seat.classList.add('hover:bg-custom-red');
             } else {
-                // Select seat
+                // Add to selected seats array and update button style
                 selectedSeats.push(seatId);
-                seatButton.classList.add("bg-blue-500", "text-white");
-                seatButton.classList.remove("border-gray-400");
+                seat.classList.add('bg-custom-red');
+                seat.classList.remove('hover:bg-custom-red');
             }
 
-            // Update Selected Seats Display
-            document.getElementById("selectedSeats").textContent = selectedSeats.join(", ");
+            // Update the displayed selected seats at the bottom
+            displaySelectedSeats();
+        }
+
+        // Function to display selected seats at the bottom
+        function displaySelectedSeats() {
+            const selectedSeatsDiv = document.getElementById('selectedSeats');
+            selectedSeatsDiv.innerHTML = selectedSeats.join(', '); // Display selected seats as a comma-separated list
         }
     </script>
 </div>
