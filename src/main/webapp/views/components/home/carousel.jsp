@@ -21,8 +21,8 @@
                         <p class="text-sm md:text-base">2024</p>
                     </div>
                     <div class="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4 md:mb-4">
-                        <a class="custom-primary-button text-center w-full sm:w-auto" href="#">Buy Ticket</a>
-                        <a class="custom-secondary-button text-center w-full sm:w-auto" href="#">Watch Trailer</a>
+                        <a class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200 text-center w-full sm:w-auto" href="#">Buy Ticket</a>
+                        <a class="px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200 text-center w-full sm:w-auto" href="#">Watch Trailer</a>
                     </div>
                 </div>
             </div>
@@ -48,8 +48,8 @@
                         <p class="text-sm md:text-base">2024</p>
                     </div>
                     <div class="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4 md:mb-4">
-                        <a class="custom-primary-button text-center w-full sm:w-auto" href="#">Buy Ticket</a>
-                        <a class="custom-secondary-button text-center w-full sm:w-auto" href="#">Watch Trailer</a>
+                        <a class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200 text-center w-full sm:w-auto" href="#">Buy Ticket</a>
+                        <a class="px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200 text-center w-full sm:w-auto" href="#">Watch Trailer</a>
                     </div>
                 </div>
             </div>
@@ -75,8 +75,8 @@
                         <p class="text-sm md:text-base">2024</p>
                     </div>
                     <div class="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4 md:mb-4">
-                        <a class="custom-primary-button text-center w-full sm:w-auto" href="#">Buy Ticket</a>
-                        <a class="custom-secondary-button text-center w-full sm:w-auto" href="#">Watch Trailer</a>
+                        <a class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200 text-center w-full sm:w-auto" href="#">Buy Ticket</a>
+                        <a class="px-4 py-2 bg-custom-white text-custom-black border border-custom-black hover:bg-gray-50 font-normal rounded-lg transition-colors duration-200 text-center w-full sm:w-auto" href="#">Watch Trailer</a>
                     </div>
                 </div>
             </div>
