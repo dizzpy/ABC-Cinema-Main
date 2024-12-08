@@ -112,8 +112,8 @@
     </section>
 
     <!-- Reviews Section -->
-    <!-- Reviews Section -->
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
+
         <!-- Title Section -->
         <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
             <!-- Title Section -->
@@ -126,18 +126,18 @@
         <!-- Review Card Section -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-4">
 
-            <%--Database Configuration--%>
+            <%-- Database Configuration --%>
             <%
                 ResultSet rsReviews = null;
 
                 try {
-                    // Fetch reviews from the database
-                    String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE";
+                    // Fetch the latest 6 reviews from the db
+                    String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE ORDER BY created_at DESC LIMIT 6";
                     conn = Database.getConnection(); // Use your Database class for connection
                     stmt = conn.createStatement();
                     rsReviews = stmt.executeQuery(queryReviews);
 
-                    // Loop through each review and generate a card
+                    // loop for generate a card
                     while (rsReviews.next()) {
                         String description = rsReviews.getString("rating_description");
                         String name = rsReviews.getString("users_name");
