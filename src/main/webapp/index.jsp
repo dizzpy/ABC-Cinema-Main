@@ -1,10 +1,8 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>
 
 <%@ page import="java.sql.*, databaseInfo.Database" %>
-
 
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -112,6 +110,34 @@
 
         </div>
     </section>
+
+    <!-- Reviews Section -->
+    <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
+        <!-- Title Section -->
+        <h2 class="text-xl sm:text-3xl text-custom-white mb-8">Your Movie Experiences</h2>
+
+        <!-- Review Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md flex flex-col justify-between">
+
+                <!-- Review Text -->
+                <p class="text-base text-normal">
+                    Great seating and immersive sound. Booking tickets online was super easy. The hall had a cozy atmosphere, and everything was well-organized.
+                </p>
+
+                <!-- Divider -->
+                <hr class="border-custom-textgray my-4" />
+
+                <!-- Reviewer Info -->
+                <div class="flex justify-between items-center text-sm">
+                    <span class="font-normal">Jenna Ortega</span>
+                    <span class="text-custom-textgray">4.5 / 5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Footer -->
     <%@ include file="views/components/shared/footer.jsp" %>
