@@ -137,7 +137,7 @@
                     stmt = conn.createStatement();
                     rsReviews = stmt.executeQuery(queryReviews);
 
-                    // loop for generate a card
+                    // Loop through the result set and generate a card for each review
                     while (rsReviews.next()) {
                         String description = rsReviews.getString("rating_description");
                         String name = rsReviews.getString("users_name");
@@ -161,7 +161,7 @@
                 </div>
             </div>
 
-            <%--Error Handling--%>
+            <%-- Error Handling --%>
             <%
                     }
                 } catch (Exception e) {
