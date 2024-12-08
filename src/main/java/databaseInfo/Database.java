@@ -17,6 +17,7 @@ public class Database {
             if (input == null) {
                 throw new RuntimeException("dbconfig.properties file not found in resources");
             }
+
             Properties props = new Properties();
             props.load(input);
 
@@ -25,13 +26,13 @@ public class Database {
             USERNAME = props.getProperty("db.username");
             PASSWORD = props.getProperty("db.password");
 
-            // Load MySQL driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Load MariaDB driver
+            Class.forName("org.mariadb.jdbc.Driver"); // Change to MariaDB driver
 
         } catch (Exception e) {
             System.err.println("Failed to load database configuration or driver!");
             e.printStackTrace();
-            throw new RuntimeException("Failed to initialize databaseInfo.Database class", e);
+            throw new RuntimeException("Failed to initialize Database class", e);
         }
     }
 
