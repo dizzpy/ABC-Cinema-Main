@@ -112,29 +112,66 @@
     </section>
 
     <!-- Reviews Section -->
+    <!-- Reviews Section -->
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
         <!-- Title Section -->
-        <h2 class="text-xl sm:text-3xl text-custom-white mb-8">Your Movie Experiences</h2>
+        <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
+            <!-- Title Section -->
+            <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Your Movie Experiences</h2>
+            <!-- View All Section -->
+            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View
+                All</p>
+        </div>
 
-        <!-- Review Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md flex flex-col justify-between">
+        <!-- Review Card Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-4">
 
+            <%--Database Configuration--%>
+            <%
+                ResultSet rsReviews = null;
+
+                try {
+                    // Fetch reviews from the database
+                    String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE";
+                    conn = Database.getConnection(); // Use your Database class for connection
+                    stmt = conn.createStatement();
+                    rsReviews = stmt.executeQuery(queryReviews);
+
+                    // Loop through each review and generate a card
+                    while (rsReviews.next()) {
+                        String description = rsReviews.getString("rating_description");
+                        String name = rsReviews.getString("users_name");
+                        double rating = rsReviews.getDouble("rating_count");
+            %>
+
+            <!-- Review Card -->
+            <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md">
                 <!-- Review Text -->
                 <p class="text-base text-normal">
-                    Great seating and immersive sound. Booking tickets online was super easy. The hall had a cozy atmosphere, and everything was well-organized.
+                    <%= description %>
                 </p>
 
                 <!-- Divider -->
-                <hr class="border-custom-textgray my-4" />
+                <hr class="border-custom-textgray my-4"/>
 
                 <!-- Reviewer Info -->
                 <div class="flex justify-between items-center text-sm">
-                    <span class="font-normal">Jenna Ortega</span>
-                    <span class="text-custom-textgray">4.5 / 5</span>
+                    <span class="font-normal"><%= name %></span>
+                    <span class="text-custom-textgray"><%= String.format("%.1f", rating) %> / 5</span>
                 </div>
             </div>
+
+            <%--Error Handling--%>
+            <%
+                    }
+                } catch (Exception e) {
+                    System.out.println("<p>Error fetching reviews: " + e.getMessage() + "</p>");
+                } finally {
+                    if (rsReviews != null) rsReviews.close();
+                    if (stmt != null) stmt.close();
+                    if (conn != null) conn.close();
+                }
+            %>
         </div>
     </section>
 
