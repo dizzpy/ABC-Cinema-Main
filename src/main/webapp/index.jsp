@@ -1,3 +1,9 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+
+<%@ page import="java.sql.*, databaseInfo.Database" %>
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
@@ -41,105 +47,138 @@
                 All</p>
         </div>
 
+
         <!-- Card Section -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
 
+            <%--Database Configuration--%>
+            <%
+                Connection conn = null;
+                Statement stmt = null;
+
+                try {
+                    // Fetch movies from the database
+                    String queryScreening = "SELECT * FROM movies WHERE is_screening = 1";
+                    conn = Database.getConnection(); // Use your Database class for connection
+                    stmt = conn.createStatement();
+                    ResultSet rsScreening = stmt.executeQuery(queryScreening);
+
+                    // Loop through each movie and generate a card
+                    while (rsScreening.next()) {
+                        int movieId = rsScreening.getInt("id");
+                        String title = rsScreening.getString("title");
+                        String imageUrl = rsScreening.getString("image_url");
+                        double rating = rsScreening.getDouble("rating");
+                        String genres = rsScreening.getString("genres");
+            %>
+
             <!-- Movie Card 1 -->
-            <a href="${pageContext.request.contextPath}/views/movies/movie-details.jsp" class="flex justify-center">
+            <a href="<%= request.getContextPath() %>/views/movies/movie-details.jsp?id=<%= movieId %>"
+               class="flex justify-center">
                 <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
                     <!-- Movie Image -->
-                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
-                         class="w-full h-[370px] object-cover">
+                    <img src="<%= imageUrl %>" alt="<%= title %>" class="w-full h-[370px] object-cover">
                     <!-- Movie Info -->
                     <div class="pt-3">
                         <!-- Movie Name & Rating -->
                         <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-normal text-white">Elevation</h3>
+                            <h3 class="text-xl font-normal text-white"><%= title %>
+                            </h3>
                             <div class="flex items-center justify-center">
-                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
-                                     class="w-4 h-4 text-yellow-300 mr-2">
-                                <p class="text-sm text-yellow-300">5.6/10</p>
+                                <img src="<%= request.getContextPath() %>/static/assets/icons/star.svg"
+                                     alt="star" class="w-4 h-4 text-yellow-300 mr-2">
+                                <p class="text-sm text-yellow-300"><%= String.format("%.1f", rating) %>/10</p>
                             </div>
                         </div>
                         <!-- Movie Genres -->
-                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
+                        <p class="text-sm text-gray-200 mt-1"><%= genres %>
+                        </p>
                     </div>
                 </div>
             </a>
 
-            <!-- Movie Card 2 -->
-            <a href="movie-details.jsp?id=2" class="flex justify-center">
-                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
-                    <!-- Movie Image -->
-                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
-                         class="w-full h-[370px] object-cover">
-                    <!-- Movie Info -->
-                    <div class="pt-3">
-                        <!-- Movie Name & Rating -->
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-normal text-white">Elevation</h3>
-                            <div class="flex items-center justify-center">
-                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
-                                     class="w-4 h-4 text-yellow-300 mr-2">
-                                <p class="text-sm text-yellow-300">5.6/10</p>
-                            </div>
-                        </div>
-                        <!-- Movie Genres -->
-                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
-                    </div>
-                </div>
-            </a>
+            <%--Error Handling--%>
+            <%
+                    }
+                } catch (Exception e) {
+                    System.out.println("<p>Error fetching movies: " + e.getMessage() + "</p>");
+                } finally {
+                    if (stmt != null) stmt.close();
+                    if (conn != null) conn.close();
+                }
+            %>
 
-            <!-- Movie Card 3 -->
-            <a href="movie-details.jsp?id=3" class="flex justify-center">
-                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
-                    <!-- Movie Image -->
-                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
-                         class="w-full h-[370px] object-cover">
-                    <!-- Movie Info -->
-                    <div class="pt-3">
-                        <!-- Movie Name & Rating -->
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-normal text-white">Elevation</h3>
-                            <div class="flex items-center justify-center">
-                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
-                                     class="w-4 h-4 text-yellow-300 mr-2">
-                                <p class="text-sm text-yellow-300">5.6/10</p>
-                            </div>
-                        </div>
-                        <!-- Movie Genres -->
-                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Movie Card 4 -->
-            <a href="movie-details.jsp?id=4" class="flex justify-center">
-                <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
-                    <!-- Movie Image -->
-                    <img src="https://img.yts.mx/assets/images/movies/elevation_2024/medium-cover.jpg" alt="Movie Image"
-                         class="w-full h-[370px] object-cover">
-                    <!-- Movie Info -->
-                    <div class="pt-3">
-                        <!-- Movie Name & Rating -->
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-normal text-white">Elevation</h3>
-                            <div class="flex items-center justify-center">
-                                <img src="${pageContext.request.contextPath}/static/assets/icons/star.svg" alt="star"
-                                     class="w-4 h-4 text-yellow-300 mr-2">
-                                <p class="text-sm text-yellow-300">5.6/10</p>
-                            </div>
-                        </div>
-                        <!-- Movie Genres -->
-                        <p class="text-sm text-gray-200 mt-1">Action / Sci-Fi / Thriller</p>
-                    </div>
-                </div>
-            </a>
         </div>
     </section>
 
+    <!-- Reviews Section -->
+    <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
+
+        <!-- Title Section -->
+        <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
+            <!-- Title Section -->
+            <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Your Movie Experiences</h2>
+            <!-- View All Section -->
+            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View
+                All</p>
+        </div>
+
+        <!-- Review Card Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-4">
+
+            <%-- Database Configuration --%>
+            <%
+                ResultSet rsReviews = null;
+
+                try {
+                    // Fetch the latest 6 reviews from the db
+                    String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE ORDER BY created_at DESC LIMIT 6";
+                    conn = Database.getConnection(); // Use your Database class for connection
+                    stmt = conn.createStatement();
+                    rsReviews = stmt.executeQuery(queryReviews);
+
+                    // Loop through the result set and generate a card for each review
+                    while (rsReviews.next()) {
+                        String description = rsReviews.getString("rating_description");
+                        String name = rsReviews.getString("users_name");
+                        double rating = rsReviews.getDouble("rating_count");
+            %>
+
+            <!-- Review Card -->
+            <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md">
+                <!-- Review Text -->
+                <p class="text-base text-normal">
+                    <%= description %>
+                </p>
+
+                <!-- Divider -->
+                <hr class="border-custom-textgray my-4"/>
+
+                <!-- Reviewer Info -->
+                <div class="flex justify-between items-center text-sm">
+                    <span class="font-normal"><%= name %></span>
+                    <span class="text-custom-textgray"><%= String.format("%.1f", rating) %> / 5</span>
+                </div>
+            </div>
+
+            <%-- Error Handling --%>
+            <%
+                    }
+                } catch (Exception e) {
+                    System.out.println("<p>Error fetching reviews: " + e.getMessage() + "</p>");
+                } finally {
+                    if (rsReviews != null) rsReviews.close();
+                    if (stmt != null) stmt.close();
+                    if (conn != null) conn.close();
+                }
+            %>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <%@ include file="views/components/shared/footer.jsp" %>
+
 </div>
 </body>
 </html>
