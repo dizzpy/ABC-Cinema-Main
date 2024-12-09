@@ -27,7 +27,14 @@
     <!-- Navbar -->
     <%@ include file="/views/components/shared/navbar.jsp" %>
 
-<%--    <p class="text-custom-red text-5xl text-center mt-[100px]">Test About Us Page</p>--%>
+
+    <div class="container mx-auto px-[120px] py-[73px]">
+        <div class="flex flex-col items-center">
+            <div class="w-[1040px] h-[497px] rounded-lg-[12px] bg-cover bg-center">
+                <img src="${pageContext.request.contextPath}/static/assets/images/aboutus.png" alt="aboutus">
+            </div>
+        </div>
+    </div>
 
 
     <!-- Footer -->
