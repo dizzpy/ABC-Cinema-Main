@@ -56,54 +56,43 @@
             <%--Database Configuration--%>
             <%
                 Connection conn = null;
-                Statement stmt = null;
+                PreparedStatement stmt = null;
 
                 try {
-                    // Fetch movies from the database
-                    String queryScreening = "SELECT * FROM movies WHERE is_screening = 1";
+                    // SQL query to fetch movies in "Screening Now Home" category
+                    String queryScreening = "SELECT * FROM movies_management WHERE category = 'Screening Now Home' AND status = 'Published'";
                     conn = Database.getConnection(); // Use your Database class for connection
-                    stmt = conn.createStatement();
-                    ResultSet rsScreening = stmt.executeQuery(queryScreening);
+                    stmt = conn.prepareStatement(queryScreening);
+                    ResultSet rsScreening = stmt.executeQuery();
 
                     // Loop through each movie and generate a card
                     while (rsScreening.next()) {
                         int movieId = rsScreening.getInt("id");
                         String title = rsScreening.getString("title");
-                        String imageUrl = rsScreening.getString("image_url");
-                        double rating = rsScreening.getDouble("rating");
+                        String posterUrl = rsScreening.getString("poster_url");
                         String genres = rsScreening.getString("genres");
             %>
 
-            <!-- Movie Card 1 -->
-            <a href="<%= request.getContextPath() %>/views/movies/movie-details.jsp?id=<%= movieId %>"
-               class="flex justify-center">
+            <!-- Movie Card -->
+            <a href="<%= request.getContextPath() %>/views/movies/movie-details.jsp?id=<%= movieId %>" class="flex justify-center">
                 <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
                     <!-- Movie Image -->
-                    <img src="<%= imageUrl %>" alt="<%= title %>" class="w-full h-[370px] object-cover">
+                    <img src="<%= posterUrl %>" alt="<%= title %>" class="w-full h-[370px] object-cover">
                     <!-- Movie Info -->
                     <div class="pt-3">
-                        <!-- Movie Name & Rating -->
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-normal text-white"><%= title %>
-                            </h3>
-                            <div class="flex items-center justify-center">
-                                <img src="<%= request.getContextPath() %>/static/assets/icons/star.svg"
-                                     alt="star" class="w-4 h-4 text-yellow-300 mr-2">
-                                <p class="text-sm text-yellow-300"><%= String.format("%.1f", rating) %>/10</p>
-                            </div>
-                        </div>
+                        <!-- Movie Name -->
+                        <h3 class="text-xl font-normal text-white"><%= title %></h3>
                         <!-- Movie Genres -->
-                        <p class="text-sm text-gray-200 mt-1"><%= genres %>
-                        </p>
+                        <p class="text-sm text-gray-200 mt-1"><%= genres %></p>
                     </div>
                 </div>
             </a>
 
-            <%--Error Handling--%>
+            <%-- Error Handling --%>
             <%
                     }
                 } catch (Exception e) {
-                    System.out.println("<p>Error fetching movies: " + e.getMessage() + "</p>");
+                    System.out.println("<p class='text-red-500'>Error fetching movies: " + e.getMessage() + "</p>");
                 } finally {
                     if (stmt != null) stmt.close();
                     if (conn != null) conn.close();
@@ -111,6 +100,7 @@
             %>
 
         </div>
+
     </section>
 
     <!-- Footer -->
