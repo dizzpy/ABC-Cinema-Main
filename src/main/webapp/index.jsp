@@ -1,8 +1,8 @@
 <%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %>
+
 <%@ page import="java.sql.ResultSet" %>
 
-<%@ page import="java.sql.*, databaseInfo.Database" %>
+<%@ page import="java.sql.*, util.Database" %>
 
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -117,51 +117,53 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-4">
 
             <%-- Database Configuration --%>
-            <%
-                ResultSet rsReviews = null;
 
-                try {
-                    // Fetch the latest 6 reviews from the db
-                    String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE ORDER BY created_at DESC LIMIT 6";
-                    conn = Database.getConnection(); // Use your Database class for connection
-                    stmt = conn.createStatement();
-                    rsReviews = stmt.executeQuery(queryReviews);
+                <%
+                    ResultSet rsReviews = null;
+                    PreparedStatement stmtReviews = null; // Change stmt for reviews to PreparedStatement
 
-                    // Loop through the result set and generate a card for each review
-                    while (rsReviews.next()) {
-                        String description = rsReviews.getString("rating_description");
-                        String name = rsReviews.getString("users_name");
-                        double rating = rsReviews.getDouble("rating_count");
-            %>
+                    try {
+                        // Fetch the latest 6 reviews from the db
+                        String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE ORDER BY created_at DESC LIMIT 6";
+                        conn = Database.getConnection(); // Use your Database class for connection
+                        stmtReviews = conn.prepareStatement(queryReviews); // Prepare the query
+                        rsReviews = stmtReviews.executeQuery(); // Execute the query
 
-            <!-- Review Card -->
-            <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md">
-                <!-- Review Text -->
-                <p class="text-base text-normal">
-                    <%= description %>
-                </p>
+                        // Loop through the result set and generate a card for each review
+                        while (rsReviews.next()) {
+                            String description = rsReviews.getString("rating_description");
+                            String name = rsReviews.getString("users_name");
+                            double rating = rsReviews.getDouble("rating_count");
+                %>
 
-                <!-- Divider -->
-                <hr class="border-custom-textgray my-4"/>
+                <!-- Review Card -->
+                <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md">
+                    <!-- Review Text -->
+                    <p class="text-base text-normal">
+                        <%= description %>
+                    </p>
 
-                <!-- Reviewer Info -->
-                <div class="flex justify-between items-center text-sm">
-                    <span class="font-normal"><%= name %></span>
-                    <span class="text-custom-textgray"><%= String.format("%.1f", rating) %> / 5</span>
+                    <!-- Divider -->
+                    <hr class="border-custom-textgray my-4"/>
+
+                    <!-- Reviewer Info -->
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-normal"><%= name %></span>
+                        <span class="text-custom-textgray"><%= String.format("%.1f", rating) %> / 5</span>
+                    </div>
                 </div>
-            </div>
 
-            <%-- Error Handling --%>
-            <%
+                <%
+                        }
+                    } catch (Exception e) {
+                        System.out.println("<p>Error fetching reviews: " + e.getMessage() + "</p>");
+                    } finally {
+                        if (rsReviews != null) rsReviews.close();
+                        if (stmtReviews != null) stmtReviews.close(); // Ensure proper closing
+                        if (conn != null) conn.close();
                     }
-                } catch (Exception e) {
-                    System.out.println("<p>Error fetching reviews: " + e.getMessage() + "</p>");
-                } finally {
-                    if (rsReviews != null) rsReviews.close();
-                    if (stmt != null) stmt.close();
-                    if (conn != null) conn.close();
-                }
-            %>
+                %>
+
         </div>
     </section>
 
