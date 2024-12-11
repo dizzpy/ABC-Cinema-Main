@@ -25,6 +25,11 @@
             </a>
         </div>
 
+        <%
+            // Fetch the session and check if the user is logged in
+            String fullName = (String) session.getAttribute("full_name");
+        %>
+
         <!-- Button -->
         <div class="flex space-x-4">
             <!-- Search Button -->
@@ -33,11 +38,22 @@
 <%--                     class="text-custom-black">--%>
 <%--            </button>--%>
 
+            <% if (fullName != null) { %>
+            <span class="welcome-text">Welcome, <%= fullName %></span>
+
             <!-- Login Button -->
+            <a href="${pageContext.request.contextPath}/LogoutServlet"
+               class="btn-logout px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200">
+                Login
+            </a>
+
+            <!-- Login Button -->
+            <% } else { %>
             <a href="/login"
                class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200">
                 Login
             </a>
+            <% } %>
         </div>
     </div>
 </nav>

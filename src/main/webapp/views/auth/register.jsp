@@ -24,6 +24,7 @@
 <div class="w-[350px] text-center">
     <p class="text-[20px] text-custom-white mb-6">Create an Account</p>
 
+    <form action="RegisterServlet" method="post">
     <%--  Name Inputbox  --%>
     <input
             type="text"
@@ -52,9 +53,11 @@
     />
 
     <%--  Create Account Button  --%>
-    <button class="w-full bg-custom-red text-custom-white rounded-md px-5 py-3 mt-5">
+    <button type="submit" class="w-full bg-custom-red text-custom-white rounded-md px-5 py-3 mt-5">
         Create
     </button>
+
+    </form>
 
     <%--  Naviagte to Login page  --%>
     <div class="w-full mt-5">
@@ -64,5 +67,14 @@
         </p>
     </div>
 </div>
+
+<!-- Use JSTL to pass the message and type to JavaScript -->
+<c:if test="${not empty message}">
+    <script type="text/javascript">
+        var message = "${message}";
+        var messageType = "${messageType}";
+    </script>
+</c:if>
+
 </body>
 </html>
