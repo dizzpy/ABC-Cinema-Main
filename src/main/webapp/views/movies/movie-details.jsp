@@ -1,3 +1,6 @@
+<%@ page import="java.sql.*" %>
+<%@ page import="databaseInfo.Database" %>
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
@@ -34,9 +37,40 @@
         <div class="mx-auto container mt-10">
             <div class="flex flex-col md:flex-row items-start justify-center space-x-0 md:space-x-16">
 
+
+                <%-- Database Configuration and Fetch Movie Details --%>
+                <%
+                    Connection conn = null;
+                    PreparedStatement stmt = null;
+
+                    // Get the movieId from the URL parameter
+                    String movieIdParam = request.getParameter("id");
+
+                    try {
+                        if (movieIdParam != null && !movieIdParam.isEmpty()) {
+                            int movieId = Integer.parseInt(movieIdParam); // Convert movie ID to integer
+
+                            // Establish database connection
+                            conn = Database.getConnection(); // Use your Database class for connection
+                            String query = "SELECT * FROM movies_management WHERE id = ?";
+                            stmt = conn.prepareStatement(query);
+                            stmt.setInt(1, movieId);
+                            ResultSet rs = stmt.executeQuery();
+
+                            if (rs.next()) {
+                                // Retrieve movie details from the database
+                                String posterUrl = rs.getString("poster_url");
+                                String title = rs.getString("title");
+                                String description = rs.getString("description");
+                                String genres = rs.getString("genres");
+                                String pg = rs.getString("pg");
+                                String category = rs.getString("category");
+                %>
+
+
                 <!-- Movie Poster -->
                 <div class="w-[268.53px] h-[355px] mx-auto md:mx-0">
-                    <img src="https://image.tmdb.org/t/p/w1280/1MJNcPZy46hIy2CmSqOeru0yr5C.jpg"
+                    <img src="<%= posterUrl %>"
                          alt="Venom"
                          class="rounded w-full h-full object-cover">
                 </div>
@@ -45,7 +79,7 @@
                 <div class="w-full md:w-2/3 md:mt-0 mt-10">
                     <!-- Movie Title -->
                     <p class="text-[36px] md:text-[42px] text-custom-white font-bold">
-                        Venom: Let There Be Carnage
+                        <%= title %>
                     </p>
 
                     <!-- Runtime, Category, Ratings -->
@@ -62,7 +96,7 @@
 
                         <!-- Category -->
                         <div class="flex flex-row items-center">
-                            <p class="text-sm md:text-base text-custom-textgray font-normal">PG-13</p>
+                            <p class="text-sm md:text-base text-custom-textgray font-normal"><%= pg %></p>
                         </div>
 
                         <!-- Separator -->
@@ -80,15 +114,13 @@
 
                     <!-- Movie Description -->
                     <p class="text-sm md:text-base text-custom-textgray mt-4">
-                        Eddie Brock attempts to reignite his career by
-                        interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and
-                        escapes prison after a failed execution.
+                        <%= description %>
                     </p>
 
                     <p class="text-xl text-custom-white mt-5">Category</p>
 
                     <p class="text-sm md:text-base text-custom-textgray mt-2">
-                        Action, Adventure, Sci-Fi
+                        <%= genres %>
                     </p>
 
                     <!-- Buttons Section -->
@@ -108,6 +140,28 @@
                         </a>
                     </div>
                 </div>
+
+                    <%
+                    } else {
+                    %>
+                    <p class="error-message text-red-500">Movie not found for the provided ID.</p>
+                    <%
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                    %>
+                    <p class="error-message text-red-500">Invalid movie ID format. Please provide a valid ID.</p>
+                    <%
+                    } catch (Exception e) {
+                    %>
+                    <p class="error-message text-red-500">Error retrieving movie details: <%= e.getMessage() %></p>
+                    <%
+                        } finally {
+                            if (stmt != null) stmt.close();
+                            if (conn != null) conn.close();
+                        }
+                    %>
+
             </div>
         </div>
 
