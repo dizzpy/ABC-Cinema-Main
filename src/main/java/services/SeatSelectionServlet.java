@@ -87,7 +87,7 @@ public class SeatSelectionServlet extends HttpServlet {
                 }
             }
 
-            // Insert the new order into the database with the hardcoded show_time
+            // Insert the new order into the database
             String insertOrderQuery = "INSERT INTO orders (user_id, movie_id, seat_numbers, total_price, show_date, booking_date) VALUES (?, ?, ?, ?, ?, NOW())";
             try (PreparedStatement ps = con.prepareStatement(insertOrderQuery)) {
                 ps.setString(1, userId);

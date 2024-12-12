@@ -33,6 +33,8 @@
     <%-- Tailwind config file --%>
     <script src="${pageContext.request.contextPath}/static/js/tailwind-config.js"></script>
     <link href="${pageContext.request.contextPath}/static/css/style.css">
+
+
 </head>
 
 <body class="bg-custom-black min-h-screen flex flex-col">
@@ -102,7 +104,8 @@
                         <div class="flex flex-row items-center">
                             <img src="${pageContext.request.contextPath}/static/assets/icons/clock-white.svg"
                                  alt="Run Time" class="h-5 w-5">
-                            <p class="text-sm md:text-base text-custom-textgray ml-1 font-normal"><%= runtime %></p>
+                            <p class="text-sm md:text-base text-custom-textgray ml-1 font-normal"><%= runtime %>
+                            </p>
                         </div>
 
                         <!-- Separator -->
@@ -121,7 +124,8 @@
                         <div class="flex flex-row items-center space-x-2">
                             <img src="${pageContext.request.contextPath}/static/assets/icons/imdb-logo.png"
                                  alt="IMDb Logo" class="h-5 w-auto">
-                            <p class="text-sm md:text-base text-custom-textgray font-normal"><%= imdb_rating %></p>
+                            <p class="text-sm md:text-base text-custom-textgray font-normal"><%= imdb_rating %>
+                            </p>
                         </div>
                     </div>
 
@@ -183,74 +187,86 @@
         </div>
 
 
-            <%-- Show Time, Show Date, and Seat Selection --%>
-            <section class="seats-section">
+        <%-- Show Time, Show Date, and Seat Selection --%>
+        <section class="seats-section">
 
-                <!-- Title Section -->
-                <p class="text-xl text-custom-red w-auto mt-24">
-                    Select Your Seats Here
-                </p>
+            <!-- Title Section -->
+            <p class="text-xl text-custom-red w-auto mt-24">
+                Select Your Seats Here
+            </p>
 
-                <!-- Select Bar -->
-                <div class="bg-custom-gray text-white p-6 rounded-lg flex flex-col md:flex-row justify-around items-center md:space-x-4 space-y-6 md:space-y-0 max-w-7xl mx-auto mt-6">
-                    <!-- Location -->
-                    <div class="w-full md:w-auto flex flex-col">
-                        <div class="flex items-center space-x-2">
-                            <img src="<%= request.getContextPath() %>/static/assets/icons/location.svg" alt="Location" class="h-5 w-5 text-custom-red">
-                            <span class="text-[16px] font-normal text-custom-textgray">Location</span>
-                        </div>
-                        <select class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer">
-                            <option value="Wellawatta">ABC Wellawatta</option>
-                        </select>
+            <!-- Select Bar -->
+            <div class="bg-custom-gray text-white p-6 rounded-lg flex flex-col md:flex-row justify-around items-center md:space-x-4 space-y-6 md:space-y-0 max-w-7xl mx-auto mt-6">
+                <!-- Location -->
+                <div class="w-full md:w-auto flex flex-col">
+                    <div class="flex items-center space-x-2">
+                        <img src="<%= request.getContextPath() %>/static/assets/icons/location.svg" alt="Location"
+                             class="h-5 w-5 text-custom-red">
+                        <span class="text-[16px] font-normal text-custom-textgray">Location</span>
                     </div>
-
-                    <!-- Show Time -->
-                    <div class="w-full md:w-auto flex flex-col">
-                        <div class="flex items-center space-x-2">
-                            <img src="<%= request.getContextPath() %>/static/assets/icons/time.svg" alt="Show Time" class="h-5 w-5 text-custom-red">
-                            <span class="text-[16px] font-normal text-custom-textgray">Show Time</span>
-                        </div>
-                        <select id="showTime" class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer" required>
-                            <option value="10.30 AM">10:30 AM</option>
-<%--                            <option value="1.30 PM">1:30 PM</option>--%>
-<%--                            <option value="7.30 PM">7:30 PM</option>--%>
-                        </select>
-                    </div>
-
-                    <!-- Show Date -->
-                    <div class="w-full md:w-auto flex flex-col">
-                        <div class="flex items-center space-x-2">
-                            <img src="<%= request.getContextPath() %>/static/assets/icons/calender.svg" alt="Date" class="h-5 w-5 text-custom-red">
-                            <span class="text-[16px] font-normal text-custom-textgray">Date</span>
-                        </div>
-                        <input type="date" id="showDate" class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer" required>
-                    </div>
+                    <select class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer">
+                        <option value="Wellawatta">ABC Wellawatta</option>
+                    </select>
                 </div>
 
-                <!-- Screen Image -->
-                <img src="<%= request.getContextPath() %>/static/assets/screen.png" alt="Seats" class="w-full h-[550px] mx-auto mt-10 object-cover">
+                <!-- Show Time -->
+                <div class="w-full md:w-auto flex flex-col">
+                    <div class="flex items-center space-x-2">
+                        <img src="<%= request.getContextPath() %>/static/assets/icons/time.svg" alt="Show Time"
+                             class="h-5 w-5 text-custom-red">
+                        <span class="text-[16px] font-normal text-custom-textgray">Show Time</span>
+                    </div>
+                    <select id="showTime"
+                            class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer"
+                            required>
+                        <option value="10.30 AM">10:30 AM</option>
+                        <%--                            <option value="1.30 PM">1:30 PM</option>--%>
+                        <%--                            <option value="7.30 PM">7:30 PM</option>--%>
+                    </select>
+                </div>
 
-                <!-- Seat Grid -->
-                <div id="SelectSeats" class="max-w-4xl h-[400px] mx-auto container">
-                    <div class="grid grid-cols-10 gap-1 h-full">
-                        <%
-                            String[] rows = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-                            for (String row : rows) {
-                                for (int col = 1; col <= 10; col++) {
-                                    String seatId = row + col;
-                        %>
-                        <button id="<%= seatId %>" class="seat w-full h-full border border-custom-white rounded hover:text-custom-textgray text-white transition" onclick="toggleSeatSelection('<%= seatId %>')">
-                            <%= seatId %>
-                        </button>
-                        <%
-                                }
+                <!-- Show Date -->
+                <div class="w-full md:w-auto flex flex-col">
+                    <div class="flex items-center space-x-2">
+                        <img src="<%= request.getContextPath() %>/static/assets/icons/calender.svg" alt="Date"
+                             class="h-5 w-5 text-custom-red">
+                        <span class="text-[16px] font-normal text-custom-textgray">Date</span>
+                    </div>
+                    <input type="date"
+                           id="showDate"
+                           class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer"
+                           required>
+                </div>
+            </div>
+
+            <!-- Screen Image -->
+            <img src="<%= request.getContextPath() %>/static/assets/screen2.png" alt="Seats"
+                 class="w-full h-[550px] mx-auto mt-10 object-cover">
+
+            <!-- Seat Grid -->
+            <div id="SelectSeats" class="max-w-4xl h-[400px] mx-auto container">
+                <div class="grid grid-cols-10 gap-1 h-full">
+                    <%
+                        String[] rows = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+                        for (String row : rows) {
+                            for (int col = 1; col <= 10; col++) {
+                                String seatId = row + col;
+                    %>
+                    <button id="<%= seatId %>"
+                            class="seat w-full h-full border border-custom-white rounded hover:text-custom-textgray text-white transition"
+                            onclick="toggleSeatSelection('<%= seatId %>')">
+                        <%= seatId %>
+                    </button>
+                    <%
                             }
-                        %>
-                    </div>
+                        }
+                    %>
                 </div>
+            </div>
 
-                <!-- Seat Legend -->
-                <div class="flex flex-row space-x-16 mx-auto my-12">
+            <!-- Seat Legend -->
+            <div class="flex flex-col items-center my-12">
+                <div class="flex flex-row space-x-16">
                     <div class="flex flex-row items-center space-x-2">
                         <div class="w-4 h-4 border border-custom-white rounded"></div>
                         <span class="text-[16px] font-normal text-custom-textgray">Available</span>
@@ -264,97 +280,100 @@
                         <span class="text-[16px] font-normal text-custom-textgray">Booked</span>
                     </div>
                 </div>
-
-                <!-- Total Price -->
-                <div class="flex flex-row justify-center mt-[20px]">
-                    <p class="text-xl text-custom-white">Total Price: LKR <span id="totalPrice">0</span></p>
-                </div>
-
-                <!-- Buttons -->
-                <div class="flex flex-row justify-center space-x-4 mt-10 mb-[80px]">
-                    <button onclick="window.location.href='views/pages/movies.jsp'" class="px-4 py-2 bg-custom-gray text-white font-normal rounded-[8px]">
-                        Discard
-                    </button>
-                    <button type="button" onclick="submitSeats()" class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px]">
-                        Continue to Payment
-                    </button>
-
-                </div>
-
-                <!-- Hidden Form -->
-                <form id="seatForm" action="<%= request.getContextPath() %>/SeatSelectionServlet" method="post" style="display:none;">
-                    <input type="hidden" name="movieId" id="movieIdInput" value="<%= movieIdParam %>">
-                    <input type="hidden" name="selectedSeats" id="selectedSeats">
-                    <input type="hidden" name="totalPrice" id="totalPriceInput">
-                    <input type="hidden" name="showDate" id="showDateInput">
-                    <input type="hidden" name="showTime" id="showTimeInput">
-                </form>
+            </div>
 
 
+            <!-- Total Price -->
+            <div class="flex flex-row justify-center mt-[20px]">
+                <p class="text-xl text-custom-white">Total Price: LKR <span id="totalPrice">0</span></p>
+            </div>
 
-            </section>
+            <!-- Buttons -->
+            <div class="flex flex-row justify-center space-x-4 mt-10 mb-[80px]">
+                <button onclick="window.location.href='views/pages/movies.jsp'"
+                        class="px-4 py-2 bg-custom-gray text-white font-normal rounded-[8px]">
+                    Discard
+                </button>
+                <button type="button" onclick="submitSeats()"
+                        class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px]">
+                    Continue to Payment
+                </button>
 
-            <script>
+            </div>
 
-                const seatPrice = 1800;
-                const selectedSeats = new Set();
+            <!-- Hidden Form -->
+            <form id="seatForm" action="<%= request.getContextPath() %>/SeatSelectionServlet" method="post"
+                  style="display:none;">
+                <input type="hidden" name="movieId" id="movieIdInput" value="<%= movieIdParam %>">
+                <input type="hidden" name="selectedSeats" id="selectedSeats">
+                <input type="hidden" name="totalPrice" id="totalPriceInput">
+                <input type="hidden" name="showDate" id="showDateInput">
+                <input type="hidden" name="showTime" id="showTimeInput">
+            </form>
 
-                function toggleSeatSelection(seatId) {
-                    const seat = document.getElementById(seatId);
-                    if (selectedSeats.has(seatId)) {
-                        selectedSeats.delete(seatId);
-                        seat.classList.remove("bg-custom-red");
-                    } else {
-                        selectedSeats.add(seatId);
-                        seat.classList.add("bg-custom-red");
-                    }
-                    updateTotalPrice();
+
+        </section>
+
+        <script>
+
+            const seatPrice = 1800;
+            const selectedSeats = new Set();
+
+            function toggleSeatSelection(seatId) {
+                const seat = document.getElementById(seatId);
+                if (selectedSeats.has(seatId)) {
+                    selectedSeats.delete(seatId);
+                    seat.classList.remove("bg-custom-red");
+                } else {
+                    selectedSeats.add(seatId);
+                    seat.classList.add("bg-custom-red");
+                }
+                updateTotalPrice();
+            }
+
+            function updateTotalPrice() {
+                const total = selectedSeats.size * seatPrice;
+                document.getElementById("totalPrice").innerText = total;
+            }
+
+
+            function submitSeats() {
+                const totalPrice = document.getElementById("totalPrice").textContent;
+                const showDate = document.getElementById("showDate").value;
+                const movieId = "<%= movieIdParam %>";
+
+                // Hardcoded showtime (e.g., "10:30 AM")
+                const showTime = "10:30 AM"; // Replace with the time you want to fix
+
+                if (!showDate) {
+                    alert("Please select a date to watch the movie.");
+                    return;
                 }
 
-                function updateTotalPrice() {
-                    const total = selectedSeats.size * seatPrice;
-                    document.getElementById("totalPrice").innerText = total;
-                }
+                // Set hidden inputs
+                document.getElementById("selectedSeats").value = JSON.stringify(Array.from(selectedSeats));
+                document.getElementById("totalPriceInput").value = totalPrice;
+                document.getElementById("showDateInput").value = showDate;
+                document.getElementById("showTimeInput").value = showTime; // Pass the fixed showtime
+                document.getElementById("movieIdInput").value = "<%= movieIdParam %>"; // This ensures that movieId is passed
+
+                // Check the form data
+                console.log('Form data: ', {
+                    selectedSeats: document.getElementById("selectedSeats").value,
+                    totalPrice: totalPrice,
+                    showDate: showDate,
+                    showTime: showTime,
+                    movieId: movieId
+                });
+
+                // Display the form temporarily for debugging
+                document.getElementById("seatForm").style.display = "block";
+
+                document.getElementById("seatForm").submit();
+            }
 
 
-                function submitSeats() {
-                    const totalPrice = document.getElementById("totalPrice").textContent;
-                    const showDate = document.getElementById("showDate").value;
-                    const movieId = "<%= movieIdParam %>";
-
-                    // Hardcoded showtime (e.g., "10:30 AM")
-                    const showTime = "10:30 AM"; // Replace with the time you want to fix
-
-                    if (!showDate) {
-                        alert("Please select a date to watch the movie.");
-                        return;
-                    }
-
-                    // Set hidden inputs
-                    document.getElementById("selectedSeats").value = JSON.stringify(Array.from(selectedSeats));
-                    document.getElementById("totalPriceInput").value = totalPrice;
-                    document.getElementById("showDateInput").value = showDate;
-                    document.getElementById("showTimeInput").value = showTime; // Pass the fixed showtime
-                    document.getElementById("movieIdInput").value = "<%= movieIdParam %>"; // This ensures that movieId is passed
-
-                    // Check the form data
-                    console.log('Form data: ', {
-                        selectedSeats: document.getElementById("selectedSeats").value,
-                        totalPrice: totalPrice,
-                        showDate: showDate,
-                        showTime: showTime,
-                        movieId: movieId
-                    });
-
-                    // Display the form temporarily for debugging
-                    document.getElementById("seatForm").style.display = "block";
-
-                    document.getElementById("seatForm").submit();
-                }
-
-
-
-            </script>
+        </script>
 
 </div>
 </body>
