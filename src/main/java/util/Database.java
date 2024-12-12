@@ -40,4 +40,16 @@ public class Database {
         // Return the connection
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
+
+    public static void testConnection() {
+        try (Connection conn = getConnection()) {
+            if (conn != null) {
+                System.out.println("Database connection successful!");
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to connect to the database!");
+            e.printStackTrace();
+        }
+    }
+
 }
