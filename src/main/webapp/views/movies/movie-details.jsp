@@ -1,6 +1,18 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="util.Database" %>
 
+<%
+    // Get the movieId from the URL parameter
+    String movieIdParam = request.getParameter("id");
+
+    // If movieId is null or empty, redirect to an error page
+    if (movieIdParam == null || movieIdParam.isEmpty()) {
+        response.sendRedirect("error/404.jsp?message=Invalid or missing movie ID");
+        return; // Stop further processing of the page
+    }
+%>
+
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
@@ -44,7 +56,7 @@
                     PreparedStatement stmt = null;
 
                     // Get the movieId from the URL parameter
-                    String movieIdParam = request.getParameter("id");
+//                    String movieIdParam = request.getParameter("id");
 
                     try {
                         if (movieIdParam != null && !movieIdParam.isEmpty()) {
@@ -65,6 +77,8 @@
                                 String genres = rs.getString("genres");
                                 String pg = rs.getString("pg");
                                 String category = rs.getString("category");
+                                String imdb_rating = rs.getString("imdb_rating");
+                                String runtime = rs.getString("runtime");
                 %>
 
 
@@ -88,7 +102,7 @@
                         <div class="flex flex-row items-center">
                             <img src="${pageContext.request.contextPath}/static/assets/icons/clock-white.svg"
                                  alt="Run Time" class="h-5 w-5">
-                            <p class="text-sm md:text-base text-custom-textgray ml-1 font-normal">1h 37m</p>
+                            <p class="text-sm md:text-base text-custom-textgray ml-1 font-normal"><%= runtime %></p>
                         </div>
 
                         <!-- Separator -->
@@ -107,7 +121,7 @@
                         <div class="flex flex-row items-center space-x-2">
                             <img src="${pageContext.request.contextPath}/static/assets/icons/imdb-logo.png"
                                  alt="IMDb Logo" class="h-5 w-auto">
-                            <p class="text-sm md:text-base text-custom-textgray font-normal">8.2/10</p>
+                            <p class="text-sm md:text-base text-custom-textgray font-normal"><%= imdb_rating %></p>
                         </div>
                     </div>
 
@@ -169,152 +183,178 @@
         </div>
 
 
+            <%-- Show Time, Show Date, and Seat Selection --%>
+            <section class="seats-section">
 
-            <p class="text-xl text-custom-red w-auto mt-24">Select Your Seats Here</p>
+                <!-- Title Section -->
+                <p class="text-xl text-custom-red w-auto mt-24">
+                    Select Your Seats Here
+                </p>
 
-            <div class="bg-custom-gray text-white p-6 rounded-lg flex flex-col md:flex-row justify-around items-center md:space-x-4 space-y-6 md:space-y-0 max-w-7xl mx-auto mt-6">
-                <!-- Location -->
-                <div class="w-full md:w-auto flex flex-col">
-                    <div class="flex items-center space-x-2">
-                        <img src="<%= request.getContextPath() %>/static/assets/icons/location.svg" alt="Location" class="h-5 w-5 text-custom-red">
-                        <span class="text-[16px] font-normal text-custom-textgray">Location</span>
+                <!-- Select Bar -->
+                <div class="bg-custom-gray text-white p-6 rounded-lg flex flex-col md:flex-row justify-around items-center md:space-x-4 space-y-6 md:space-y-0 max-w-7xl mx-auto mt-6">
+                    <!-- Location -->
+                    <div class="w-full md:w-auto flex flex-col">
+                        <div class="flex items-center space-x-2">
+                            <img src="<%= request.getContextPath() %>/static/assets/icons/location.svg" alt="Location" class="h-5 w-5 text-custom-red">
+                            <span class="text-[16px] font-normal text-custom-textgray">Location</span>
+                        </div>
+                        <select class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer">
+                            <option value="Wellawatta">ABC Wellawatta</option>
+                        </select>
                     </div>
-                    <select class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer">
-                        <option value="Wellawatta">ABC Wellawatta</option>
-                        <option value="Colombo">ABC Colombo</option>
-                        <option value="Kandy">ABC Kandy</option>
-                    </select>
+
+                    <!-- Show Time -->
+                    <div class="w-full md:w-auto flex flex-col">
+                        <div class="flex items-center space-x-2">
+                            <img src="<%= request.getContextPath() %>/static/assets/icons/time.svg" alt="Show Time" class="h-5 w-5 text-custom-red">
+                            <span class="text-[16px] font-normal text-custom-textgray">Show Time</span>
+                        </div>
+                        <select id="showTime" class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer" required>
+                            <option value="10.30 AM">10:30 AM</option>
+<%--                            <option value="1.30 PM">1:30 PM</option>--%>
+<%--                            <option value="7.30 PM">7:30 PM</option>--%>
+                        </select>
+                    </div>
+
+                    <!-- Show Date -->
+                    <div class="w-full md:w-auto flex flex-col">
+                        <div class="flex items-center space-x-2">
+                            <img src="<%= request.getContextPath() %>/static/assets/icons/calender.svg" alt="Date" class="h-5 w-5 text-custom-red">
+                            <span class="text-[16px] font-normal text-custom-textgray">Date</span>
+                        </div>
+                        <input type="date" id="showDate" class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer" required>
+                    </div>
                 </div>
 
-                <!-- Show Time -->
-                <div class="w-full md:w-auto flex flex-col">
-                    <div class="flex items-center space-x-2">
-                        <img src="<%= request.getContextPath() %>/static/assets/icons/time.svg" alt="Show Time" class="h-5 w-5 text-custom-red">
-                        <span class="text-[16px] font-normal text-custom-textgray">Show Time</span>
-                    </div>
-                    <select id="showTime" class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer">
-                        <option value="10:30">10:30 PM</option>
-                        <option value="1:30">1:30 PM</option>
-                        <option value="7:30">7:30 PM</option>
-                    </select>
-                </div>
+                <!-- Screen Image -->
+                <img src="<%= request.getContextPath() %>/static/assets/screen.png" alt="Seats" class="w-full h-[550px] mx-auto mt-10 object-cover">
 
-                <!-- Date -->
-                <div class="w-full md:w-auto flex flex-col">
-                    <div class="flex items-center space-x-2">
-                        <img src="<%= request.getContextPath() %>/static/assets/icons/calendar.svg" alt="Date" class="h-5 w-5 text-custom-red">
-                        <span class="text-[16px] font-normal text-custom-textgray">Date</span>
-                    </div>
-                    <select id="showDate" class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer">
-                        <option value="2024-12-25">25 December</option>
-                        <option value="2024-12-26">26 December</option>
-                        <option value="2024-12-27">27 December</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- SCREEN -->
-            <img src="<%= request.getContextPath() %>/static/assets/screen.png" alt="Seats" class="w-full h-[550px] mx-auto mt-10 object-cover">
-
-            <!-- Seats Section Start -->
-            <div id="SelectSeats" class="max-w-4xl h-[400px] mx-auto container mt-8">
                 <!-- Seat Grid -->
-                <div class="grid grid-cols-10 gap-1 h-full">
-                    <% String[] rows = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-                        int columns = 10;
-                        for (String row : rows) {
-                            for (int col = 1; col <= columns; col++) {
-                                String seatId = row + col; %>
-                    <button id="<%= seatId %>" class="seat w-full h-full border border-custom-white rounded hover:text-custom-textgray text-white transition" onclick="toggleSeatSelection('<%= seatId %>')">
-                        <%= seatId %>
+                <div id="SelectSeats" class="max-w-4xl h-[400px] mx-auto container">
+                    <div class="grid grid-cols-10 gap-1 h-full">
+                        <%
+                            String[] rows = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+                            for (String row : rows) {
+                                for (int col = 1; col <= 10; col++) {
+                                    String seatId = row + col;
+                        %>
+                        <button id="<%= seatId %>" class="seat w-full h-full border border-custom-white rounded hover:text-custom-textgray text-white transition" onclick="toggleSeatSelection('<%= seatId %>')">
+                            <%= seatId %>
+                        </button>
+                        <%
+                                }
+                            }
+                        %>
+                    </div>
+                </div>
+
+                <!-- Seat Legend -->
+                <div class="flex flex-row space-x-16 mx-auto my-12">
+                    <div class="flex flex-row items-center space-x-2">
+                        <div class="w-4 h-4 border border-custom-white rounded"></div>
+                        <span class="text-[16px] font-normal text-custom-textgray">Available</span>
+                    </div>
+                    <div class="flex flex-row items-center space-x-2">
+                        <div class="w-4 h-4 bg-custom-red rounded"></div>
+                        <span class="text-[16px] font-normal text-custom-textgray">Selected</span>
+                    </div>
+                    <div class="flex flex-row items-center space-x-2">
+                        <div class="w-4 h-4 bg-custom-white rounded"></div>
+                        <span class="text-[16px] font-normal text-custom-textgray">Booked</span>
+                    </div>
+                </div>
+
+                <!-- Total Price -->
+                <div class="flex flex-row justify-center mt-[20px]">
+                    <p class="text-xl text-custom-white">Total Price: LKR <span id="totalPrice">0</span></p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex flex-row justify-center space-x-4 mt-10 mb-[80px]">
+                    <button onclick="window.location.href='views/pages/movies.jsp'" class="px-4 py-2 bg-custom-gray text-white font-normal rounded-[8px]">
+                        Discard
                     </button>
-                    <% } } %>
-                </div>
-            </div>
+                    <button type="button" onclick="submitSeats()" class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px]">
+                        Continue to Payment
+                    </button>
 
-            <!-- Legend -->
-            <div class="flex flex-row space-x-16 mx-auto my-8">
-                <div class="flex flex-row items-center space-x-2">
-                    <div class="w-4 h-4 border border-custom-white rounded"></div>
-                    <span class="text-[16px] font-normal text-custom-textgray">Available</span>
                 </div>
-                <div class="flex flex-row items-center space-x-2">
-                    <div class="w-4 h-4 bg-custom-red rounded"></div>
-                    <span class="text-[16px] font-normal text-custom-textgray">Selected</span>
-                </div>
-                <div class="flex flex-row items-center space-x-2">
-                    <div class="w-4 h-4 bg-custom-white rounded"></div>
-                    <span class="text-[16px] font-normal text-custom-textgray">Booked</span>
-                </div>
-            </div>
 
-            <!-- Selected Seats and Total Price -->
-            <div class="flex flex-col items-center space-y-4">
-                <p id="selectedSeatsText" class="text-xl text-custom-white">Selected Seats: None</p>
-                <p id="totalPriceText" class="text-xl text-custom-white">Total Price: LKR <span id="totalPrice">0</span> </p>
-            </div>
+                <!-- Hidden Form -->
+                <form id="seatForm" action="<%= request.getContextPath() %>/SeatSelectionServlet" method="post" style="display:none;">
+                    <input type="hidden" name="movieId" id="movieIdInput" value="<%= movieIdParam %>">
+                    <input type="hidden" name="selectedSeats" id="selectedSeats">
+                    <input type="hidden" name="totalPrice" id="totalPriceInput">
+                    <input type="hidden" name="showDate" id="showDateInput">
+                    <input type="hidden" name="showTime" id="showTimeInput">
+                </form>
 
-            <!-- Continue Button -->
-            <div class="flex flex-row justify-center space-x-4 mt-6 mb-[80px]">
-                <button onclick="submitOrder()" class="px-4 py-2 bg-custom-red text-custom-white font-normal rounded-[8px] transition-colors duration-200">
-                    Continue to Payment
-                </button>
-            </div>
 
-            <!-- JavaScript -->
+
+            </section>
+
             <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    const seats = document.querySelectorAll(".seat:not(.occupied)");
-                    const pricePerSeat = 1800; // Price per seat
-                    const totalPriceElement = document.getElementById("totalPrice");
 
-                    seats.forEach(seat => {
-                        seat.addEventListener("click", () => {
-                            seat.classList.toggle("selected");
-
-                            // Calculate the total price based on selected seats
-                            const selectedSeats = document.querySelectorAll(".seat.selected").length;
-                            const totalPrice = selectedSeats * pricePerSeat;
-
-                            // Update the total price in the UI
-                            totalPriceElement.textContent = totalPrice;
-                        });
-                    });
-                });
+                const seatPrice = 1800;
+                const selectedSeats = new Set();
 
                 function toggleSeatSelection(seatId) {
                     const seat = document.getElementById(seatId);
-                    if (seat.classList.contains('bg-custom-red')) {
-                        selectedSeats = selectedSeats.filter(id => id !== seatId);
-                        seat.classList.remove('bg-custom-red');
+                    if (selectedSeats.has(seatId)) {
+                        selectedSeats.delete(seatId);
+                        seat.classList.remove("bg-custom-red");
                     } else {
-                        selectedSeats.push(seatId);
-                        seat.classList.add('bg-custom-red');
+                        selectedSeats.add(seatId);
+                        seat.classList.add("bg-custom-red");
                     }
-                    updateSelectedSeats();
+                    updateTotalPrice();
                 }
 
-                function submitSeats() {
-                    const selectedSeats = Array.from(document.querySelectorAll(".seat.selected"))
-                        .map(seat => seat.getAttribute("data-seat"));
+                function updateTotalPrice() {
+                    const total = selectedSeats.size * seatPrice;
+                    document.getElementById("totalPrice").innerText = total;
+                }
 
+
+                function submitSeats() {
                     const totalPrice = document.getElementById("totalPrice").textContent;
                     const showDate = document.getElementById("showDate").value;
+                    const movieId = "<%= movieIdParam %>";
+
+                    // Hardcoded showtime (e.g., "10:30 AM")
+                    const showTime = "10:30 AM"; // Replace with the time you want to fix
 
                     if (!showDate) {
                         alert("Please select a date to watch the movie.");
                         return;
                     }
 
-                    // Set the values of the hidden inputs before submitting the form
-                    document.getElementById("selectedSeats").value = JSON.stringify(selectedSeats);
+                    // Set hidden inputs
+                    document.getElementById("selectedSeats").value = JSON.stringify(Array.from(selectedSeats));
                     document.getElementById("totalPriceInput").value = totalPrice;
-                    document.getElementById("showDateInput").value = showDate; // Add the selected date to the form
+                    document.getElementById("showDateInput").value = showDate;
+                    document.getElementById("showTimeInput").value = showTime; // Pass the fixed showtime
+                    document.getElementById("movieIdInput").value = "<%= movieIdParam %>"; // This ensures that movieId is passed
 
-                    document.getElementById("seatForm").submit(); // Submit the form
+                    // Check the form data
+                    console.log('Form data: ', {
+                        selectedSeats: document.getElementById("selectedSeats").value,
+                        totalPrice: totalPrice,
+                        showDate: showDate,
+                        showTime: showTime,
+                        movieId: movieId
+                    });
+
+                    // Display the form temporarily for debugging
+                    document.getElementById("seatForm").style.display = "block";
+
+                    document.getElementById("seatForm").submit();
                 }
-            </script>
 
+
+
+            </script>
 
 </div>
 </body>

@@ -41,7 +41,7 @@
 
     <p class="text-[20px] text-custom-white mb-6">Log in to your Account</p>
 
-    <form action="LoginServlet" method="post">
+    <form action="<%= request.getContextPath() %>/LoginServlet" method="post">
     <%--  Email Inputbox  --%>
     <input
             type="email"

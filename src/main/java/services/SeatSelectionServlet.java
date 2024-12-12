@@ -1,7 +1,6 @@
 package services;
 
 import util.Database;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,69 +10,106 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @WebServlet("/SeatSelectionServlet")
 public class SeatSelectionServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession(false);
 
-        // Ensure user is logged in
         if (session == null || session.getAttribute("user_id") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("views/auth/login.jsp?error=session_expired");
             return;
         }
 
-        // Retrieve data from session and request
         String userId = (String) session.getAttribute("user_id");
-        Integer movieId = (Integer) session.getAttribute("movie_id");
+
+        // Get movieId from request parameter instead of session
+        Integer movieId = Integer.parseInt(request.getParameter("movieId"));  // Get movieId from request
+
+        if (movieId == null) {
+            System.out.println("Movie ID is null. Redirecting to error page.");
+            response.sendRedirect("error/404.jsp?error=missing_movie_id");
+            return;
+        }
+
         String selectedSeatsJson = request.getParameter("selectedSeats");
         String totalPriceStr = request.getParameter("totalPrice");
         String showDateStr = request.getParameter("showDate");
-        String showTimeStr = request.getParameter("showTime"); // New field
 
-        if (movieId == null || showDateStr == null || showTimeStr == null) {
-            System.out.println("Error: Missing essential parameters.");
-            response.sendRedirect("error.jsp");
+        if (selectedSeatsJson == null || totalPriceStr == null || showDateStr == null) {
+            response.sendRedirect(request.getContextPath() + "/error/404.jsp?error=missing_params");
             return;
         }
 
-        int totalPrice = Integer.parseInt(totalPriceStr);
-
+        Gson gson = new Gson();
+        List<String> selectedSeats;
         try {
-            if (selectedSeatsJson != null && !selectedSeatsJson.isEmpty()) {
-                List<String> selectedSeats = new ArrayList<>(
-                        Arrays.asList(selectedSeatsJson.replace("[", "").replace("]", "").split(","))
-                );
-
-                // Database Connection
-                Connection conn = Database.getConnection();
-
-                // SQL query to insert order with show date and time
-                String sql = "INSERT INTO orders (user_id, movie_id, seat_numbers, total_price, show_date, show_time, booking_date) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, NOW())";
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, userId);
-                stmt.setInt(2, movieId);
-                stmt.setString(3, String.join(",", selectedSeats));
-                stmt.setInt(4, totalPrice);
-                stmt.setString(5, showDateStr);
-                stmt.setString(6, showTimeStr); // Add show time
-
-                stmt.executeUpdate();
-
-                // Redirect to the payment page
-                response.sendRedirect("payment.jsp");
-            } else {
-                response.sendRedirect("error.jsp"); // Handle empty seat selection
-            }
+            selectedSeats = gson.fromJson(selectedSeatsJson, new TypeToken<List<String>>() {}.getType());
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("error/jsonError.jsp");
+            return;
+        }
+
+        // Hardcoded show_time, for example 2:30 PM (14:30:00)
+        String hardcodedShowTime = "14:30:00";  // Modify to the desired fixed time
+
+        try (Connection con = Database.getConnection()) {
+            // Check availability of selected seats
+            String checkSeatsQuery = "SELECT seat_numbers FROM orders WHERE movie_id = ? AND show_date = ?";
+            try (PreparedStatement checkSeatsPs = con.prepareStatement(checkSeatsQuery)) {
+                checkSeatsPs.setInt(1, movieId);
+                checkSeatsPs.setString(2, showDateStr);
+                ResultSet rs = checkSeatsPs.executeQuery();
+
+                // Collect all booked seats for the given show date
+                List<String> bookedSeats = new ArrayList<>();
+                while (rs.next()) {
+                    String bookedSeatsJson = rs.getString("seat_numbers");
+                    List<String> bookedSeatsList = gson.fromJson(bookedSeatsJson, new TypeToken<List<String>>() {}.getType());
+                    bookedSeats.addAll(bookedSeatsList);
+                }
+
+                // Check if any selected seat is already booked
+                for (String seat : selectedSeats) {
+                    if (bookedSeats.contains(seat)) {
+                        response.sendRedirect("error/seatAlreadyBooked.jsp?seat=" + seat);
+                        return;
+                    }
+                }
+            }
+
+            // Insert the new order into the database with the hardcoded show_time
+            String insertOrderQuery = "INSERT INTO orders (user_id, movie_id, seat_numbers, total_price, show_date, booking_date) VALUES (?, ?, ?, ?, ?, NOW())";
+            try (PreparedStatement ps = con.prepareStatement(insertOrderQuery)) {
+                ps.setString(1, userId);
+                ps.setInt(2, movieId);
+                ps.setString(3, gson.toJson(selectedSeats)); // Store selected seats as JSON
+                ps.setDouble(4, Double.parseDouble(totalPriceStr));
+                ps.setString(5, showDateStr);
+                ps.setString(6, hardcodedShowTime);  // Use the hardcoded show time
+                ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    response.sendRedirect("payments/payment.jsp");
+                } else {
+                    System.out.println("Database insertion failed. Rows affected: " + rowsAffected);
+                    response.sendRedirect("error/databaseError.jsp");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Exception occurred during database operation: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect("error/databaseError.jsp");
         }
     }
 }
