@@ -22,8 +22,26 @@
 
 <body class="bg-custom-black min-h-screen flex flex-col items-center justify-center">
 <div class="w-[350px] text-center">
+
+
+        <%-- Display message if available --%>
+        <%
+            String message = (String) session.getAttribute("message");
+            String messageType = (String) session.getAttribute("messageType");
+            if (message != null) {
+        %>
+        <div class="<%= messageType %>">
+            <%= message %>
+        </div>
+        <%
+                session.removeAttribute("message");
+                session.removeAttribute("messageType");
+            }
+        %>
+
     <p class="text-[20px] text-custom-white mb-6">Log in to your Account</p>
 
+    <form action="LoginServlet" method="post">
     <%--  Email Inputbox  --%>
     <input
             type="email"
@@ -37,7 +55,7 @@
     <input
             type="password"
             id="password"
-            name="email"
+            name="password"
             placeholder="***********"
             class="mt-5 w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
     />
@@ -49,9 +67,11 @@
     </div>
 
     <%--  Create Account Button  --%>
-    <button class="w-full bg-custom-red text-custom-white rounded-md px-5 py-3">
+    <button type="submit" class="w-full bg-custom-red text-custom-white rounded-md px-5 py-3">
         Login to Account
     </button>
+
+    </form>
 
     <%--  Naviagte to Register page  --%>
     <div class="w-full mt-5">
@@ -61,5 +81,14 @@
         </p>
     </div>
 </div>
+
+<!-- Use JSTL to pass the message and type to JavaScript -->
+<c:if test="${not empty message}">
+    <script type="text/javascript">
+        var message = "${message}";
+        var messageType = "${messageType}";
+    </script>
+</c:if>
+
 </body>
 </html>
