@@ -20,12 +20,12 @@
     <link href="${pageContext.request.contextPath}/static/css/style.css">
 </head>
 
-<body class="bg-custom-black min-h-screen text-custom-white">
+<body class="bg-custom-black min-h-screen text-custom-white container max-w-7xl mx-auto">
 <!-- Navbar -->
 <%@ include file="../components/shared/navbar.jsp" %>
 
-<!-- Main content wrapper -->
-<div class="container max-w-7xl mx-auto py-12 px-4 md:px-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-10 md:mt-[120px]">
+<!-- Add Review Section -->
+<div class="mx-auto py-12 px-4 md:px-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-10 md:mt-[120px]">
     <!-- Text content section -->
     <div class="content-center w-full md:w-1/2 p-4">
         <div class="text-lg font-normal ">Add Your Rating</div>
@@ -69,6 +69,142 @@
     </div>
 </div>
 
+<!-- All Reviews Section -->
+<div class="mx-auto py-5 px-4 md:px-8 mt-10 md:mt-20">
+
+    <!-- All Reviews Title -->
+    <p class="text-lg">What Others Are Saying</p>
+
+    <!-- Review Card Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <!-- Review Card 1 -->
+        <div class="bg-custom-gray p-4 rounded-md">
+            <!-- Top Section -->
+            <div class="flex items-center space-x-4">
+                <!-- Reviewer display img -->
+                <div class="rounded-full bg-custom-red w-10 h-10">
+                </div>
+
+                <!-- Reviewer details, name + rating -->
+                <div class="flex flex-col justify-center">
+                    <p class="text-custom-white">Reviewer Name</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-500 text-[16px]">&#9733;</span>
+                        <p class="text-custom-textgray ml-2 text-[16px]">4.5</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Description -->
+            <p class="text-custom-textgray mb-4 mt-5">
+                This is a brief review description. It highlights the main points of the review.This is a brief review
+                description. It highlights the main points of the review.
+            </p>
+        </div>
+
+        <!-- Review Card 2 -->
+        <div class="bg-custom-gray p-4 rounded-md">
+            <!-- Top Section -->
+            <div class="flex items-center space-x-4">
+                <!-- Reviewer display img -->
+                <div class="rounded-full bg-custom-red w-10 h-10">
+                </div>
+
+                <!-- Reviewer details, name + rating -->
+                <div class="flex flex-col justify-center">
+                    <p class="text-custom-white">Reviewer Name</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-500 text-[16px]">&#9733;</span>
+                        <p class="text-custom-textgray ml-2 text-[16px]">4.5</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Description -->
+            <p class="text-custom-textgray mb-4 mt-5">
+                This is a brief review description. It highlights the main points of the review.This is a brief review
+                description. It highlights the main points of the review.
+            </p>
+        </div>
+
+        <!-- Review Card 3 -->
+        <div class="bg-custom-gray p-4 rounded-md">
+            <!-- Top Section -->
+            <div class="flex items-center space-x-4">
+                <!-- Reviewer display img -->
+                <div class="rounded-full bg-custom-red w-10 h-10">
+                </div>
+
+                <!-- Reviewer details, name + rating -->
+                <div class="flex flex-col justify-center">
+                    <p class="text-custom-white">Reviewer Name</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-500 text-[16px]">&#9733;</span>
+                        <p class="text-custom-textgray ml-2 text-[16px]">4.5</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Description -->
+            <p class="text-custom-textgray mb-4 mt-5">
+                This is a brief review description. It highlights the main points of the review.This is a brief review
+                description. It highlights the main points of the review.
+            </p>
+        </div>
+
+        <!-- Review Card 4 -->
+        <div class="bg-custom-gray p-4 rounded-md">
+            <!-- Top Section -->
+            <div class="flex items-center space-x-4">
+                <!-- Reviewer display img -->
+                <div class="rounded-full bg-custom-red w-10 h-10">
+                </div>
+
+                <!-- Reviewer details, name + rating -->
+                <div class="flex flex-col justify-center">
+                    <p class="text-custom-white">Reviewer Name</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-500 text-[16px]">&#9733;</span>
+                        <p class="text-custom-textgray ml-2 text-[16px]">4.5</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Description -->
+            <p class="text-custom-textgray mb-4 mt-5">
+                This is a brief review description. It highlights the main points of the review.This is a brief review
+                description. It highlights the main points of the review.
+            </p>
+        </div>
+
+        <!-- Review Card 5 -->
+        <div class="bg-custom-gray p-4 rounded-md">
+            <!-- Top Section -->
+            <div class="flex items-center space-x-4">
+                <!-- Reviewer display img -->
+                <div class="rounded-full bg-custom-red w-10 h-10">
+                </div>
+
+                <!-- Reviewer details, name + rating -->
+                <div class="flex flex-col justify-center">
+                    <p class="text-custom-white">Reviewer Name</p>
+                    <div class="flex items-center">
+                        <span class="text-yellow-500 text-[16px]">&#9733;</span>
+                        <p class="text-custom-textgray ml-2 text-[16px]">4.5</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Description -->
+            <p class="text-custom-textgray mb-4 mt-5">
+                This is a brief review description. It highlights the main points of the review.This is a brief review
+                description. It highlights the main points of the review.
+            </p>
+        </div>
+
+    </div>
+
+</div>
 <!-- Footer -->
 <%--<%@ include file="../components/shared/footer.jsp" %>--%>
 
