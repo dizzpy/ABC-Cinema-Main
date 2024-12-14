@@ -28,32 +28,42 @@
     <%@ include file="/views/components/shared/navbar.jsp" %>
 
 
-    <div class="container mx-auto px-[240px] py-[100px]">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-[59px] gap-x-[50px]">
+    <div class="container mx-auto px-[10px] sm:px-[24px] lg:px-[240px] py-[40px] sm:py-[50px] lg:py-[119px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-[24px] sm:gap-y-[40px] lg:gap-y-[59px]   gap-x-[24px] sm:gap-x-[31px] lg:gap-x-[50px]">
 
             <div class="flex flex-col items-start">
-                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
-                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+                <div class=" w-full max-w-[495px] h-[220px] sm:h-[230px] md:h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/location2.png')]"></div>
+                <div class=" text-custom-white font-inter text-[15px] md:text-[24px] mt-[7px] md:mt-[17px]">ABC Cinema
+                    Colombo
+                </div>
             </div>
 
             <div class="flex flex-col items-start">
-                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
-                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+                <div class=" w-full max-w-[495px] h-[220px] sm:h-[230px] md:h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/location3.png')] overflow-hidden"></div>
+                <div class=" text-custom-white font-inter text-[15px] md:text-[24px] mt-[7px] md:mt-[17px]">ABC Cinema
+                    Panadura
+                </div>
             </div>
 
             <div class="flex flex-col items-start">
-                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
-                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+                <div class=" w-full max-w-[495px] h-[220px] sm:h-[230px] md:h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/location5.png')]"></div>
+                <div class=" text-custom-white font-inter text-[15px] md:text-[24px] mt-[7px] md:mt-[17px]">ABC Cinema
+                    Negombo
+                </div>
             </div>
 
             <div class="flex flex-col items-start">
-                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
-                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+                <div class=" w-full max-w-[495px] h-[220px] sm:h-[230px] md:h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/location4.png')]"></div>
+                <div class=" text-custom-white font-inter text-[15px] md:text-[24px] mt-[7px] md:mt-[17px]">ABC Cinema
+                    Galle
+                </div>
             </div>
 
             <div class="flex flex-col items-start">
-                <div class=" w-[495px] h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/caro1.png')]"></div>
-                <div class=" text-custom-white font-inter text-[24px] mt-[17px]">ABC Cinema Australia</div>
+                <div class=" w-full max-w-[495px] h-[220px] sm:h-[230px] md:h-[256px] rounded-lg bg-cover bg-center bg-[url('/static/assets/images/location1.png')]"></div>
+                <div class=" text-custom-white font-inter text-[15px] md:text-[24px] mt-[7px] md:mt-[17px]">ABC Cinema
+                    Jaffna
+                </div>
             </div>
         </div>
     </div>
