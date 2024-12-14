@@ -39,18 +39,18 @@
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>ReviewPage</servlet-name>
-        <jsp-file>/views/review/all-review.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ReviewPage</servlet-name>
-        <url-pattern>/reviews</url-pattern>
-    </servlet-mapping>
+    <!--    <servlet>-->
+    <!--        <servlet-name>ReviewServlet</servlet-name>-->
+    <!--        <servlet-class>services.ReviewServlet</servlet-class>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>ReviewServlet</servlet-name>-->
+    <!--        <url-pattern>/reviews</url-pattern>-->
+    <!--    </servlet-mapping>-->
 
 
-<!--  auth pages  -->
-<!-- login -->
+    <!--  auth pages  -->
+    <!-- login -->
     <servlet>
         <servlet-name>LoginPage</servlet-name>
         <jsp-file>/views/auth/login.jsp</jsp-file>
@@ -79,7 +79,6 @@
         <servlet-name>ForgotPasswordPage</servlet-name>
         <url-pattern>/forgot-password</url-pattern>
     </servlet-mapping>
-
 
 
     <!-- Dynamic Page -->
