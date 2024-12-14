@@ -54,13 +54,21 @@
                 <% } %>
             </div>
 
+            <%
+                if (session.getAttribute("full_name") != null) {
+                    fullName = (String) session.getAttribute("full_name");
+                }
+            %>
+
             <!-- Name Textbox -->
             <input
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="john doe"
+                    placeholder="login first"
+                    value="<%= fullName != null ? fullName : "" %>"
                     class="w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
+                    <%= fullName != null ? "readonly" : "" %>
             />
             <!-- Description Textbox -->
             <textarea
