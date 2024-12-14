@@ -39,6 +39,15 @@
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ReviewPage</servlet-name>
+        <jsp-file>/views/review/all-review.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewPage</servlet-name>
+        <url-pattern>/reviews</url-pattern>
+    </servlet-mapping>
+
 
 <!--  auth pages  -->
 <!-- login -->
