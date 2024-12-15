@@ -1,25 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PC
-  Date: 12/14/2024
-  Time: 8:32 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Error</title>
 </head>
 <body>
 <h1>Payment Error</h1>
-
-<%
-    String errorMessage = request.getParameter("error");
-    if (errorMessage == null || errorMessage.isEmpty()) {
-        errorMessage = "An unknown error occurred.";
-    }
-%>
-<p><%= errorMessage %>
+<p>
+    <%= request.getParameter("error") != null
+            ? request.getParameter("error").replace("%20", " ")
+            : "An unknown error occurred." %>
 </p>
+<a href="/payments/payment.jsp">Go back to Payment Page</a>
 </body>
 </html>

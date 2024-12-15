@@ -41,10 +41,9 @@ public class SeatSelectionServlet extends HttpServlet {
         }
 
         String selectedSeatsJson = request.getParameter("selectedSeats");
-        String totalPriceStr = request.getParameter("totalPrice");
         String showDateStr = request.getParameter("showDate");
 
-        if (selectedSeatsJson == null || totalPriceStr == null || showDateStr == null) {
+        if (selectedSeatsJson == null || showDateStr == null) {
             response.sendRedirect(request.getContextPath() + "/error/404.jsp?error=missing_params");
             return;
         }
@@ -87,19 +86,24 @@ public class SeatSelectionServlet extends HttpServlet {
                 }
             }
 
+            // Calculate total price dynamically
+            double ticketPrice = 10.0; // Example ticket price
+            double calculatedTotalPrice = selectedSeats.size() * ticketPrice;
+
             // Insert the new order into the database
             String insertOrderQuery = "INSERT INTO orders (user_id, movie_id, seat_numbers, total_price, show_date, booking_date) VALUES (?, ?, ?, ?, ?, NOW())";
             try (PreparedStatement ps = con.prepareStatement(insertOrderQuery)) {
                 ps.setString(1, userId);
                 ps.setInt(2, movieId);
                 ps.setString(3, gson.toJson(selectedSeats)); // Store selected seats as JSON
-                ps.setDouble(4, Double.parseDouble(totalPriceStr));
+                ps.setDouble(4, calculatedTotalPrice);
                 ps.setString(5, showDateStr);
-                ps.setString(6, hardcodedShowTime);  // Use the hardcoded show time
-                ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected > 0) {
+                    // Store the total price in session for the payment process
+                    session.setAttribute("calculatedTotalPrice", calculatedTotalPrice);
+
                     response.sendRedirect("payments/payment.jsp");
                 } else {
                     System.out.println("Database insertion failed. Rows affected: " + rowsAffected);

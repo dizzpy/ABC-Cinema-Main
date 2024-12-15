@@ -1,10 +1,17 @@
 <%
-    String totalPrice = request.getParameter("totalPrice");
-    if (totalPrice == null || totalPrice.isEmpty()) {
-        response.sendRedirect("error/paymentError.jsp?error=Missing%20total%20price");
+    // Retrieve the calculated total price from the session
+    Double totalPrice = (Double) session.getAttribute("calculatedTotalPrice");
+
+    if (totalPrice == null) {
+        response.sendRedirect("error/paymentError.jsp?error=Missing total price");
         return;
     }
 %>
+
+<!-- Display the total price -->
+<h2>Total Price: $<%= totalPrice %>
+</h2>
+
 
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -54,7 +61,7 @@
             <div class="space-y-4">
                 <p class="text-2xl text-custom-red text-medium">Personal Information</p>
 
-                <form method="post" action="${pageContext.request.contextPath}/PayPalPaymentServlet">
+                <form id="payment-form" method="post" action="${pageContext.request.contextPath}/StripePaymentServlet">
                     <!-- Name Input -->
                     <p class="text-custom-textgray">Full Name</p>
                     <input
@@ -86,6 +93,20 @@
                             class="w-full bg-custom-black text-custom-white placeholder:text-custom-textgray border border-custom-gray focus:outline-none focus:ring-1 focus:ring-custom-gray rounded-md px-5 py-3"
                     />
 
+                    <!-- Card Information Input Field -->
+                    <p class="text-custom-textgray">Card Information</p>
+                    <div id="card-element" class="w-full bg-custom-black text-custom-white border border-custom-gray rounded-md px-5 py-3">
+                        <input
+                                type="text"
+                                placeholder="Card number"
+                                class="w-full text-custom-white focus:outline-none focus:ring-0 px-5 py-3"
+                                style="background: transparent;"
+                                maxlength="19"
+                                pattern="\d*"
+                                inputmode="numeric" // Set input mode for numeric input
+                        />
+                    </div>
+
                     <!-- Terms and Conditions Checkbox -->
                     <div class="flex items-center">
                         <input
@@ -98,6 +119,8 @@
                             I agree to the terms and conditions
                         </label>
                     </div>
+
+
 
                     <div class="flex space-x-7">
                         <!-- Back Button -->
@@ -120,81 +143,75 @@
             </div>
         </div>
 
-
         <!-- Right Column -->
-        <div class="justify-end w-full">
+        <!-- <div class="justify-end w-full">
             <div class="mx-auto text-custom-white p-6 rounded-md space-y-6">
                 <h2 class="text-2xl font-semibold text-custom-red">Payment Summary</h2>
 
-                <!-- Details -->
+                 Details
 
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center font-semibold">
-                        <span class="text-lg">Total</span>
-                        <span class="text-lg">LKR <%= totalPrice %></span>
-                    </div>
-                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between items-center font-semibold">
+                                        <span class="text-lg">Total</span>
+                                        <span class="text-lg">LKR <%= totalPrice %></span>
+                                    </div>
+                                </div>
 
-                <!-- PayPal Button Container -->
-                <div id="paypal-button-container" style="display: none;"></div>
+                Stripe Button Container
+                <div id="stripe-button-container"></div>
 
-
-                <!-- PayPal Logo -->
+                 PayPal Logo
                 <div class="flex justify-end mt-6">
                     <img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg" alt="PayPal"
                          class="h-8">
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
-<!-- PayPal SDK Script -->
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=LKR"></script>
-
+<!-- Include Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-    document.getElementById('continue-button').addEventListener('click', function () {
-        // Check if terms are accepted
-        if (document.getElementById('terms').checked) {
-            // Ensure PayPal container is hidden initially
-            const paypalContainer = document.getElementById('paypal-button-container');
+    var stripe = Stripe('pk_test_51QRbfPRosLYWPB03KrawQxd6Hf4kpq3nBbCLLuqPlFs1RHxO7qRxy67HtA4S0O9LHZf5EaexbhE72k1RQEZnyI8e00UaYcal2S');
 
-            // Display PayPal buttons and hide 'Continue' ONLY after rendering is successful
-            paypal.Buttons({
-                createOrder: function (data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: '<%= totalPrice != null ? totalPrice : "0.00" %>'
-                            }
-                        }]
-                    });
-                },
-                onApprove: function (data, actions) {
-                    return actions.order.capture().then(function (details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
-                        window.location.href = '<%= request.getContextPath() %>/success/success.jsp';
-                    });
-                },
-                onError: function (err) {
-                    console.error('Error in PayPal processing: ', err);
-                    alert('An error occurred. Please try again.');
-                }
-            }).render('#paypal-button-container').then(function () {
-                // Success: hide the Continue button
-                document.getElementById('continue-button').style.display = 'none';
-                paypalContainer.style.display = 'block';
-            }).catch(function (err) {
-                // Handle rendering errors
-                console.error('Error rendering PayPal buttons: ', err);
-                alert('Failed to load PayPal buttons. Please try again.');
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Create and mount the card element
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    // Handle form submission
+    document.getElementById('payment-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        fetch('/StripePaymentServlet', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: document.getElementById('name').value,
+                            email: document.getElementById('email').value
+                        }
+                    }
+                }).then(function (result) {
+                    if (result.error) {
+                        alert("Payment failed: " + result.error.message);
+                    } else if (result.paymentIntent.status === 'succeeded') {
+                        alert("Payment successful!");
+                        window.location.href = '/success/success.jsp';
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
             });
-        } else {
-            alert('Please agree to the terms and conditions before proceeding.');
-        }
     });
 </script>
-
 
 </body>
 </html>
