@@ -38,11 +38,18 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>8.0.33</version> <!-- Use the latest version -->
-                </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version> <!-- Use the latest version -->
+        </dependency>
+
+        <!--payment depts-->
+        <dependency>
+            <groupId>com.paypal.sdk</groupId>
+            <artifactId>rest-api-sdk</artifactId>
+            <version>1.14.0</version>
+        </dependency>
 
 
         <dependency>
@@ -69,13 +76,12 @@
             <version>2.17.1</version> <!-- Use the latest version -->
         </dependency>
 
-<!--        No Logging (NOP)-->
+        <!--        No Logging (NOP)-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
             <version>1.7.32</version> <!-- Use the latest version -->
         </dependency>
-
 
 
         <dependency>
