@@ -4,6 +4,22 @@ ABC Cinema is a web-based application developed to simplify cinema ticket bookin
 
 ---
 
+> ⚠️ Important Configuration
+> 
+> Before running the application, make sure to configure the email settings in the `dbconfig.properties` file located in the `src/main/resources` directory. This is necessary for the email functionality to work correctly.
+>
+> ask from @dizzpy.
+> 
+> ```ini
+> smtp.username=your_smtp_username
+> smtp.password=your_smtp_password
+
+> 
+> ⚠️ Also do not push that data to the repository.
+
+
+---
+
 ## 📌 Project Links
 
 - **Figma Prototype**: [View Design](https://www.figma.com/design/phsrUi945PpvWpiDdHDY29/ABC-Cinema?node-id=630-1225&t=sdqyPcpggAm8nrCy-1)  

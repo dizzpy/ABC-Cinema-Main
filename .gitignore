@@ -13,6 +13,9 @@ target/
 .idea/vcs.xml
 .idea/modules.xml
 
+# Ignore .env file
+.env
+
 .idea/libraries/
 *.iws
 *.iml
