@@ -1,5 +1,8 @@
 package auth;
 
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import util.Database;
 
 import javax.servlet.ServletException;
@@ -8,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -22,25 +28,22 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             Class.forName("org.mariadb.jdbc.Driver");
-            Connection conn = Database.getConnection();
-            // Rest of your code
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             response.getWriter().println("JDBC Driver not found.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.getWriter().println("Database connection failed: " + e.getMessage());
+            return;
         }
 
-
-        try (Connection conn = Database.getConnection() ) {
+        try (Connection conn = Database.getConnection()) {
             String query = "INSERT INTO user_auth (full_name, email, password) VALUES (?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, fullName);
             stmt.setString(2, email);
             stmt.setString(3, password); // Consider hashing the password for security
             stmt.executeUpdate();
-            // Registration successful, pass success message to the JSP
+            // Registration successful, send confirmation email
+            sendConfirmationEmail(email, fullName);
+            // Pass success message to the JSP
             request.setAttribute("message", "Registration successful! Redirecting...");
             request.setAttribute("messageType", "success");
             request.getRequestDispatcher("views/auth/login.jsp").forward(request, response);
@@ -53,4 +56,43 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
+    private void sendConfirmationEmail(String recipientEmail, String recipientName) {
+        Properties properties = new Properties();
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("dbconfig.properties")) {
+            if (input == null) {
+                throw new RuntimeException("dbconfig.properties file not found in resources");
+            }
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        String smtpUsername = properties.getProperty("smtp.username");
+        String smtpPassword = properties.getProperty("smtp.password");
+
+        properties.put("mail.smtp.auth", properties.getProperty("smtp.auth"));
+        properties.put("mail.smtp.starttls.enable", properties.getProperty("smtp.starttls.enable"));
+        properties.put("mail.smtp.host", properties.getProperty("smtp.host"));
+        properties.put("mail.smtp.port", properties.getProperty("smtp.port"));
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(smtpUsername, smtpPassword);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("contact@abcmovies.com", "ABC Cinema"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("ABC Cinema - Registration Confirmation");
+            message.setText("Dear " + recipientName + ",\n\nThank you for registering at ABC Cinema!\n\nBest Regards,\nABC Cinema Team");
+
+            Transport.send(message);
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 }
