@@ -142,6 +142,7 @@
 
 
     <!-- Reviews Section -->
+    <!-- Reviews Section -->
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
         <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
             <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Your Movie Experiences</h2>
@@ -156,7 +157,7 @@
             <%
                 // Using try-with-resources to manage the connection and statement automatically
                 try (Connection conn = Database.getConnection()) {
-                    String queryReviews = "SELECT * FROM reviews ORDER BY created_at DESC LIMIT 5";
+                    String queryReviews = "SELECT * FROM reviews WHERE rating >= 3.5 ORDER BY created_at DESC LIMIT 5";
 
                     try (PreparedStatement stmt = conn.prepareStatement(queryReviews);
                          ResultSet rsReviews = stmt.executeQuery()) {
@@ -182,7 +183,7 @@
                         <p class="text-custom-white"><%= reviewerName %>
                         </p>
                         <div class="flex items-center">
-                            <span class="text-yellow-500 text-[16px]"> ★ </span>
+                            <span class="text-yellow-500 text-[16px]">★</span>
                             <p class="text-custom-textgray ml-2 text-[16px]"><%= rating %>/5</p>
                         </div>
                     </div>
