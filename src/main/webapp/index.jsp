@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.Connection, java.sql.ResultSet, java.sql.PreparedStatement" %>
 <%@ page import="util.Database" %>
 
@@ -37,8 +38,9 @@
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
         <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
             <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Movies in Theaters</h2>
-            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View
-                All</p>
+            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">
+                <a href="/movies">View All</a>
+            </p>
         </div>
 
         <!-- Card Section -->
@@ -90,8 +92,9 @@
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
         <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
             <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Movies Releasing Soon</h2>
-            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View
-                All</p>
+            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">
+                <a href="/movies">View All</a>
+            </p>
         </div>
 
         <!-- Card Section -->
@@ -115,7 +118,7 @@
             %>
 
             <!-- Movie Card -->
-            <a  class="flex justify-center">
+            <a class="flex justify-center">
                 <div class="w-64 overflow-hidden hover:scale-105 transform transition-all duration-300">
                     <img src="<%= posterUrl %>" alt="<%= title %>" class="w-full h-[370px] object-cover">
                     <div class="pt-3">
@@ -139,46 +142,64 @@
 
 
     <!-- Reviews Section -->
+    <!-- Reviews Section -->
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
         <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
             <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Your Movie Experiences</h2>
-            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View
-                All</p>
+            <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">
+                <a href="/reviews">View All</a>
+            </p>
         </div>
 
         <!-- Review Card Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-4">
-
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             <%-- Database Configuration --%>
             <%
+                // Using try-with-resources to manage the connection and statement automatically
                 try (Connection conn = Database.getConnection()) {
-                    String queryReviews = "SELECT * FROM reviews WHERE display_review = TRUE ORDER BY created_at DESC LIMIT 6";
+                    String queryReviews = "SELECT * FROM reviews WHERE rating >= 3.5 ORDER BY created_at DESC LIMIT 5";
 
-                    try (PreparedStatement stmtReviews = conn.prepareStatement(queryReviews);
-                         ResultSet rsReviews = stmtReviews.executeQuery()) {
+                    try (PreparedStatement stmt = conn.prepareStatement(queryReviews);
+                         ResultSet rsReviews = stmt.executeQuery()) {
 
+                        // Loop through each review and generate a card
                         while (rsReviews.next()) {
-                            String description = rsReviews.getString("rating_description");
-                            String name = rsReviews.getString("users_name");
-                            double rating = rsReviews.getDouble("rating_count");
+                            String reviewerName = rsReviews.getString("reviewer_name");
+                            double rating = rsReviews.getDouble("rating");
+                            String reviewDescription = rsReviews.getString("review_description");
             %>
 
             <!-- Review Card -->
-            <div class="bg-custom-gray text-white p-6 rounded-lg shadow-md">
-                <p class="text-base text-normal"><%= description %>
-                </p>
-                <hr class="border-custom-textgray my-4"/>
-                <div class="flex justify-between items-center text-sm">
-                    <span class="font-normal"><%= name %></span>
-                    <span class="text-custom-textgray"><%= String.format("%.1f", rating) %> / 5</span>
+            <div class="bg-custom-gray p-4 rounded-md">
+                <!-- Top Section -->
+                <div class="flex items-center space-x-4">
+                    <!-- Reviewer display img -->
+                    <div class="rounded-full bg-custom-red w-10 h-10 flex items-center justify-center">
+                        <%= reviewerName.substring(0, 1).toUpperCase() %>
+                    </div>
+
+                    <!-- Reviewer details, name + rating -->
+                    <div class="flex flex-col justify-center">
+                        <p class="text-custom-white"><%= reviewerName %>
+                        </p>
+                        <div class="flex items-center">
+                            <span class="text-yellow-500 text-[16px]">★</span>
+                            <p class="text-custom-textgray ml-2 text-[16px]"><%= rating %>/5</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Review Description -->
+                <p class="text-custom-textgray mb-4 mt-5">
+                    <%= reviewDescription %>
+                </p>
             </div>
 
             <%
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("<p>Error fetching reviews: " + e.getMessage() + "</p>");
+                    System.out.println("<p class='text-red-500'>Error fetching reviews: " + e.getMessage() + "</p>");
                 }
             %>
         </div>
