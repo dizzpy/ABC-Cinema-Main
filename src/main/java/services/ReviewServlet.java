@@ -40,10 +40,9 @@ public class ReviewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userId");
-        String username = (String) session.getAttribute("username");
+        String fullName = (String) session.getAttribute("full_name");
 
-        if (userId == null || username == null) {
+        if (fullName == null) {
             response.sendRedirect(request.getContextPath() + "/views/auth/login.jsp");
             return;
         }
@@ -55,8 +54,8 @@ public class ReviewServlet extends HttpServlet {
                 throw new IllegalArgumentException("Rating is required");
             }
             double rating = Double.parseDouble(ratingStr);
-            if (rating < 0 || rating > 10) {
-                throw new IllegalArgumentException("Rating must be between 0 and 10");
+            if (rating < 0 || rating > 5) {
+                throw new IllegalArgumentException("Rating must be between 0 and 5");
             }
 
             // Get and validate the description
@@ -67,8 +66,7 @@ public class ReviewServlet extends HttpServlet {
 
             // Create and save the review
             Review review = new Review();
-            review.setReviewerId(userId);
-            review.setReviewerName(username);
+            review.setReviewerName(fullName);
             review.setRating(rating);
             review.setReviewDescription(description.trim());
 
