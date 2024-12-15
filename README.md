@@ -1,62 +1,32 @@
+# ABC Cinema 🎬
 
-## Sample Folder Structure
+ABC Cinema is a web-based application developed to simplify cinema ticket booking and provide an enhanced user experience.
 
-```bash
-MovieTicketBooking/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── movieticketbooking/
-│   │   │           ├── controllers/
-│   │   │           │   ├── MovieController.java
-│   │   │           │   ├── BookingController.java
-│   │   │           │   └── UserController.java
-│   │   │           ├── models/
-│   │   │           │   ├── Movie.java
-│   │   │           │   ├── User.java
-│   │   │           │   └── Booking.java
-│   │   │           ├── services/
-│   │   │           │   ├── MovieService.java
-│   │   │           │   ├── BookingService.java
-│   │   │           │   └── UserService.java
-│   │   │           └── utils/
-│   │   │               └── DatabaseUtil.java
-│   │   └── webapp/
-│       ├── WEB-INF/
-│       │   ├── web.xml
-│       │   └── views/
-│       │       ├── components/
-│       │       │   └── shared/
-│       │       │       │   ├── navbar.jsp
-│       │       │       │   ├── footer.jsp
-│       │       │       │   └── pagination.jsp
-│       │       ├── auth/
-│       │       │   ├── login.jsp
-│       │       │   ├── register.jsp
-│       │       │   └── logout.jsp
-│       │       ├── booking/
-│       │       │   ├── seatSelection.jsp
-│       │       │   ├── checkout.jsp
-│       │       │   └── confirmation.jsp
-│       │       ├── movies/
-│       │       │   ├── movieList.jsp
-│       │       │   ├── movieDetails.jsp
-│       │       │   └── searchResults.jsp
-│       │       ├── user/
-│       │       │   ├── profile.jsp
-│       │       │   ├── bookingHistory.jsp
-│       │       │   └── editProfile.jsp
-│       │       └── index.jsp
-│       └── static/
-│           ├── css/
-│           │   └── tailwind.min.css
-│           ├── js/
-│           │   └── scripts.js
-│           └── images/
-├── pom.xml (or build.gradle if using Gradle)
-└── README.md
-```
+---
 
+## 📌 Project Links
 
-test
+- **Figma Prototype**: [View Design](https://www.figma.com/design/phsrUi945PpvWpiDdHDY29/ABC-Cinema?node-id=630-1225&t=sdqyPcpggAm8nrCy-1)  
+- **Notion To-Do Board**: [View Tasks](https://dizzpy.notion.site/15339fb4e05f8014a6daf010e1509e22?v=06b0b979cabf4ab899c37c93c30e7678&pvs=74)
+
+---
+
+## 🛠️ Technologies Used
+
+- **Java Servlets & JSP** for backend development.  
+- **Tailwind CSS** for responsive and modern UI.  
+- **MariaDB/MySQL** for database management.  
+- **IntelliJ IDEA** as the development environment.
+
+---
+
+## 👥 Team Members
+
+- [Your Name 1]  
+- [Your Name 2]  
+- [Your Name 3]  
+- [Your Name 4]
+
+---
+
+### Thank you for exploring our project! 🚀
