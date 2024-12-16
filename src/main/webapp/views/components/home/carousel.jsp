@@ -3,7 +3,7 @@
     <div class="relative w-full" id="slider" style="height: calc(100vh - 60px);">
         <!-- Slide 1 -->
         <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transform transition-all duration-500 ease-in-out"
-             style="background-image: url('${pageContext.request.contextPath}/static/assets/images/caro1.jpg');"
+             style="background-image: url('${pageContext.request.contextPath}/static/assets/images/carousel/deadpool3.jpg');"
              data-slide="0">
             <div class="absolute inset-0" style="background: linear-gradient(to bottom,
                 rgba(0, 0, 0, 0) 0%,
@@ -14,9 +14,9 @@
                 <div class="absolute bottom-0 left-0 p-6 md:bottom-20 md:left-20 md:pl-[70px] md:pb-[70px] text-white w-full md:w-auto">
                     <p class="text-base md:text-lg mb-2">In Cinemas 8th November</p>
                     <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">
-                        Inception</h1>
+                        Deadpool & Wolverine</h1>
                     <div class="flex items-center space-x-3 md:space-x-4 mb-4 text-custom-textgray">
-                        <p class="text-sm md:text-base">Action, Comedy</p>
+                        <p class="text-sm md:text-base">Action, Comedy, Science Fiction</p>
                         <div class="w-1 h-1 bg-custom-textgray rounded-full"></div>
                         <p class="text-sm md:text-base">2024</p>
                     </div>
@@ -30,7 +30,7 @@
 
         <!-- Slide 2 -->
         <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transform transition-all duration-500 ease-in-out"
-             style="background-image: url('${pageContext.request.contextPath}/static/assets/images/caro2.jpg');"
+             style="background-image: url('${pageContext.request.contextPath}/static/assets/images/carousel/mom.jpg');"
              data-slide="1">
             <div class="absolute inset-0" style="background: linear-gradient(to bottom,
                 rgba(0, 0, 0, 0) 0%,
@@ -41,9 +41,9 @@
                 <div class="absolute bottom-0 left-0 p-6 md:bottom-20 md:left-20 md:pl-[70px] md:pb-[70px] text-white w-full md:w-auto">
                     <p class="text-base md:text-lg mb-2">Coming Soon</p>
                     <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">
-                        The Dark Knight</h1>
+                        Multiverse of Madness</h1>
                     <div class="flex items-center space-x-3 md:space-x-4 mb-4 text-custom-textgray">
-                        <p class="text-sm md:text-base">Action, Thriller</p>
+                        <p class="text-sm md:text-base">Fantasy, Action, Adventure</p>
                         <div class="w-1 h-1 bg-custom-textgray rounded-full"></div>
                         <p class="text-sm md:text-base">2024</p>
                     </div>
@@ -57,7 +57,7 @@
 
         <!-- Slide 3 -->
         <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transform transition-all duration-500 ease-in-out"
-             style="background-image: url('${pageContext.request.contextPath}/static/assets/images/caro3.jpg');"
+             style="background-image: url('${pageContext.request.contextPath}/static/assets/images/carousel/thedarknight.jpg');"
              data-slide="2">
             <div class="absolute inset-0" style="background: linear-gradient(to bottom,
                 rgba(0, 0, 0, 0) 0%,
@@ -68,9 +68,9 @@
                 <div class="absolute bottom-0 left-0 p-6 md:bottom-20 md:left-20 md:pl-[70px] md:pb-[70px] text-white w-full md:w-auto">
                     <p class="text-base md:text-lg mb-2">Now Showing</p>
                     <h1 class="text-4xl md:text-[67px] font-normal mb-2 md:mb-4 uppercase leading-tight">
-                        Interstellar</h1>
+                        The Dark Night</h1>
                     <div class="flex items-center space-x-3 md:space-x-4 mb-4 text-custom-textgray">
-                        <p class="text-sm md:text-base">Sci-Fi, Drama</p>
+                        <p class="text-sm md:text-base">Drama, Action, Crime, Thriller</p>
                         <div class="w-1 h-1 bg-custom-textgray rounded-full"></div>
                         <p class="text-sm md:text-base">2024</p>
                     </div>
