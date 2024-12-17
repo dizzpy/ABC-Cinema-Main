@@ -38,10 +38,7 @@ ABC Cinema is a web-based application developed to simplify cinema ticket bookin
 
 ## 👥 Team Members
 
-- [Your Name 1]  
-- [Your Name 2]  
-- [Your Name 3]  
-- [Your Name 4]
+- [ Members Name List ]  
 
 ---
 
