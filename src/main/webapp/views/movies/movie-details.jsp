@@ -312,66 +312,66 @@
 
         </section>
 
-        <script>
+            <script>
 
-            const seatPrice = 1800;
-            const selectedSeats = new Set();
+                const seatPrice = 1800;
+                const selectedSeats = new Set();
 
-            function toggleSeatSelection(seatId) {
-                const seat = document.getElementById(seatId);
-                if (selectedSeats.has(seatId)) {
-                    selectedSeats.delete(seatId);
-                    seat.classList.remove("bg-custom-red");
-                } else {
-                    selectedSeats.add(seatId);
-                    seat.classList.add("bg-custom-red");
-                }
-                updateTotalPrice();
-            }
-
-            function updateTotalPrice() {
-                const total = selectedSeats.size * seatPrice;
-                document.getElementById("totalPrice").innerText = total;
-            }
-
-
-            function submitSeats() {
-                const totalPrice = document.getElementById("totalPrice").textContent;
-                const showDate = document.getElementById("showDate").value;
-                const movieId = "<%= movieIdParam %>";
-
-                // Hardcoded showtime (e.g., "10:30 AM")
-                const showTime = "10:30 AM"; // Replace with the time you want to fix
-
-                if (!showDate) {
-                    alert("Please select a date to watch the movie.");
-                    return;
+                function toggleSeatSelection(seatId) {
+                    const seat = document.getElementById(seatId);
+                    if (selectedSeats.has(seatId)) {
+                        selectedSeats.delete(seatId);
+                        seat.classList.remove("bg-custom-red");
+                    } else {
+                        selectedSeats.add(seatId);
+                        seat.classList.add("bg-custom-red");
+                    }
+                    updateTotalPrice();
                 }
 
-                // Set hidden inputs
-                document.getElementById("selectedSeats").value = JSON.stringify(Array.from(selectedSeats));
-                document.getElementById("totalPriceInput").value = totalPrice;
-                document.getElementById("showDateInput").value = showDate;
-                document.getElementById("showTimeInput").value = showTime; // Pass the fixed showtime
-                document.getElementById("movieIdInput").value = "<%= movieIdParam %>"; // This ensures that movieId is passed
-
-                // Check the form data
-                console.log('Form data: ', {
-                    selectedSeats: document.getElementById("selectedSeats").value,
-                    totalPrice: totalPrice,
-                    showDate: showDate,
-                    showTime: showTime,
-                    movieId: movieId
-                });
-
-                // Display the form temporarily for debugging
-                document.getElementById("seatForm").style.display = "block";
-
-                document.getElementById("seatForm").submit();
-            }
+                function updateTotalPrice() {
+                    const total = selectedSeats.size * seatPrice;
+                    document.getElementById("totalPrice").innerText = total;
+                }
 
 
-        </script>
+                function submitSeats() {
+                    const totalPrice = document.getElementById("totalPrice").textContent;
+                    const showDate = document.getElementById("showDate").value;
+                    const movieId = "<%= movieIdParam %>";
+
+                    // Hardcoded showtime (e.g., "10:30 AM")
+                    const showTime = "10:30 AM"; // Replace with the time you want to fix
+
+                    if (!showDate) {
+                        alert("Please select a date to watch the movie.");
+                        return;
+                    }
+
+                    // Set hidden inputs
+                    document.getElementById("selectedSeats").value = JSON.stringify(Array.from(selectedSeats));
+                    document.getElementById("totalPriceInput").value = totalPrice;
+                    document.getElementById("showDateInput").value = showDate;
+                    document.getElementById("showTimeInput").value = showTime; // Pass the fixed showtime
+                    document.getElementById("movieIdInput").value = "<%= movieIdParam %>"; // This ensures that movieId is passed
+
+                    // Check the form data
+                    console.log('Form data: ', {
+                        selectedSeats: document.getElementById("selectedSeats").value,
+                        totalPrice: totalPrice,
+                        showDate: showDate,
+                        showTime: showTime,
+                        movieId: movieId
+                    });
+
+                    // Display the form temporarily for debugging
+                    document.getElementById("seatForm").style.display = "block";
+
+                    document.getElementById("seatForm").submit();
+                }
+
+
+            </script>
 
 </div>
 </body>

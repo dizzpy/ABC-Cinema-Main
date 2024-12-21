@@ -1,6 +1,7 @@
 package services;
 
 import util.Database;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -51,7 +53,8 @@ public class SeatSelectionServlet extends HttpServlet {
         Gson gson = new Gson();
         List<String> selectedSeats;
         try {
-            selectedSeats = gson.fromJson(selectedSeatsJson, new TypeToken<List<String>>() {}.getType());
+            selectedSeats = gson.fromJson(selectedSeatsJson, new TypeToken<List<String>>() {
+            }.getType());
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("error/jsonError.jsp");
@@ -73,7 +76,8 @@ public class SeatSelectionServlet extends HttpServlet {
                 List<String> bookedSeats = new ArrayList<>();
                 while (rs.next()) {
                     String bookedSeatsJson = rs.getString("seat_numbers");
-                    List<String> bookedSeatsList = gson.fromJson(bookedSeatsJson, new TypeToken<List<String>>() {}.getType());
+                    List<String> bookedSeatsList = gson.fromJson(bookedSeatsJson, new TypeToken<List<String>>() {
+                    }.getType());
                     bookedSeats.addAll(bookedSeatsList);
                 }
 

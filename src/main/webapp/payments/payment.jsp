@@ -8,10 +8,6 @@
     }
 %>
 
-<!-- Display the total price -->
-<%--<h2>Total Price: $<%= totalPrice %>--%>
-</h2>
-
 
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -47,13 +43,17 @@
     <div class="container mx-auto max-w-6xl mt-[50px] md:mt-[150px] mb-[150px]">
         <p class="text-2xl text-custom-red">Reservation Summary</p>
 
-<%--        <!-- Movie name -->--%>
-<%--        <p class="text-4xl text-custom-white w-full md:max-w-xl mt-6">Doctor Strange In The Multiverse of Madness</p>--%>
-
         <!-- Location and Date -->
         <div class="flex flex-col md:flex-row mt-6 space-x-10">
             <p class="text-lg text-custom-white">ABC Cinema Wellawatta</p>
-<%--            <p class="text-lg text-custom-white">Date</p>--%>
+        </div>
+
+        <p class="text-2xl text-custom-red">Payment Summary</p>
+
+        <!-- Display the total price -->
+        <div class="flex flex-col md:flex-row mt-6 space-x-10">
+            <h2 class="text-lg text-custom-white">Total Price: LKR <%= totalPrice %>
+            </h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
@@ -95,7 +95,8 @@
 
                     <!-- Card Information Input Field -->
                     <p class="text-custom-textgray">Card Information</p>
-                    <div id="card-element" class="w-full bg-custom-black text-custom-white border border-custom-gray rounded-md px-5 py-3">
+                    <div id="card-element"
+                         class="w-full bg-custom-black text-custom-white border border-custom-gray rounded-md px-5 py-3">
                         <input
                                 type="text"
                                 placeholder="Card number"
@@ -121,7 +122,6 @@
                     </div>
 
 
-
                     <div class="flex space-x-7">
                         <!-- Back Button -->
                         <button
@@ -143,30 +143,6 @@
             </div>
         </div>
 
-        <!-- Right Column -->
-        <!-- <div class="justify-end w-full">
-            <div class="mx-auto text-custom-white p-6 rounded-md space-y-6">
-                <h2 class="text-2xl font-semibold text-custom-red">Payment Summary</h2>
-
-                 Details
-
-                                <div class="space-y-2">
-                                    <div class="flex justify-between items-center font-semibold">
-                                        <span class="text-lg">Total</span>
-                                        <span class="text-lg">LKR <%= totalPrice %></span>
-                                    </div>
-                                </div>
-
-                Stripe Button Container
-                <div id="stripe-button-container"></div>
-
-                 PayPal Logo
-                <div class="flex justify-end mt-6">
-                    <img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg" alt="PayPal"
-                         class="h-8">
-                </div>
-            </div>
-        </div>-->
     </div>
 </div>
 
@@ -186,7 +162,7 @@
     document.getElementById('payment-form').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        fetch('/StripePaymentServlet', { method: 'POST' })
+        fetch('/StripePaymentServlet', {method: 'POST'})
             .then(response => response.json())
             .then(data => {
                 stripe.confirmCardPayment(data.clientSecret, {
