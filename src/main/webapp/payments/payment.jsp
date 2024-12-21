@@ -9,7 +9,7 @@
 %>
 
 <!-- Display the total price -->
-<h2>Total Price: $<%= totalPrice %>
+<%--<h2>Total Price: $<%= totalPrice %>--%>
 </h2>
 
 
@@ -47,13 +47,13 @@
     <div class="container mx-auto max-w-6xl mt-[50px] md:mt-[150px] mb-[150px]">
         <p class="text-2xl text-custom-red">Reservation Summary</p>
 
-        <!-- Movie name -->
-        <p class="text-4xl text-custom-white w-full md:max-w-xl mt-6">Doctor Strange In The Multiverse of Madness</p>
+<%--        <!-- Movie name -->--%>
+<%--        <p class="text-4xl text-custom-white w-full md:max-w-xl mt-6">Doctor Strange In The Multiverse of Madness</p>--%>
 
         <!-- Location and Date -->
         <div class="flex flex-col md:flex-row mt-6 space-x-10">
             <p class="text-lg text-custom-white">ABC Cinema Wellawatta</p>
-            <p class="text-lg text-custom-white">Date</p>
+<%--            <p class="text-lg text-custom-white">Date</p>--%>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
@@ -103,7 +103,7 @@
                                 style="background: transparent;"
                                 maxlength="19"
                                 pattern="\d*"
-                                inputmode="numeric" // Set input mode for numeric input
+                                inputmode="numeric"
                         />
                     </div>
 

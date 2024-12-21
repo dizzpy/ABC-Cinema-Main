@@ -58,7 +58,7 @@ public class SeatSelectionServlet extends HttpServlet {
             return;
         }
 
-        // Hardcoded show_time, for example 2:30 PM (14:30:00)
+        // Hardcoded show_time, for example
         String hardcodedShowTime = "14:30:00";  // Modify to the desired fixed time
 
         try (Connection con = Database.getConnection()) {
@@ -87,7 +87,7 @@ public class SeatSelectionServlet extends HttpServlet {
             }
 
             // Calculate total price dynamically
-            double ticketPrice = 10.0; // Example ticket price
+            double ticketPrice = 1800.00; // Example ticket price
             double calculatedTotalPrice = selectedSeats.size() * ticketPrice;
 
             // Insert the new order into the database

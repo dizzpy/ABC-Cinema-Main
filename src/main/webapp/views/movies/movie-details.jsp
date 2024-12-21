@@ -220,8 +220,6 @@
                             class="mt-1 w-full md:w-auto text-[18px] font-normal bg-custom-gray text-white border-none rounded-md focus:ring-2 focus:ring-custom-red focus:outline-none cursor-pointer"
                             required>
                         <option value="10.30 AM">10:30 AM</option>
-                        <%--                            <option value="1.30 PM">1:30 PM</option>--%>
-                        <%--                            <option value="7.30 PM">7:30 PM</option>--%>
                     </select>
                 </div>
 
