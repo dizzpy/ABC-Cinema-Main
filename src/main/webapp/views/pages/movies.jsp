@@ -35,7 +35,7 @@
     <!-- Upcoming Movies Section -->
     <section class="container max-w-7xl mx-auto py-12 px-4 md:px-8">
         <div class="p-4 flex justify-between items-center mt-5 mb-5 flex-wrap text-center">
-            <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Movies Releasing Soon</h2>
+            <h2 class="text-xl sm:text-3xl text-custom-white w-auto mb-2 sm:mb-0">Movies Screening Now</h2>
             <p class="text-sm sm:text-base text-white cursor-pointer w-auto text-center sm:text-right ml-0 sm:ml-4">View
                 All</p>
         </div>

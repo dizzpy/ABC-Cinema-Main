@@ -44,7 +44,7 @@ public class StripePaymentServlet extends HttpServlet {
             // Create a PaymentIntent with the specified amount and currency
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                     .setAmount(amountInCents)
-                    .setCurrency("usd") // Replace with your preferred currency code
+                    .setCurrency("LKR") // Replace with your preferred currency code
                     .build();
 
             PaymentIntent paymentIntent = PaymentIntent.create(params);

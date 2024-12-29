@@ -41,14 +41,17 @@ public class RegisterServlet extends HttpServlet {
             stmt.setString(2, email);
             stmt.setString(3, password); // Consider hashing the password for security
             stmt.executeUpdate();
+
             // Registration successful, send confirmation email
             sendConfirmationEmail(email, fullName);
             // Pass success message to the JSP
             request.setAttribute("message", "Registration successful! Redirecting...");
             request.setAttribute("messageType", "success");
             request.getRequestDispatcher("views/auth/login.jsp").forward(request, response);
+
         } catch (SQLException e) {
             e.printStackTrace();
+
             // Registration failed, pass error message to the JSP
             request.setAttribute("message", "Registration failed! Error: " + e.getMessage());
             request.setAttribute("messageType", "error");
